@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load i18n %}
+
+<section class="section_padding">
+    <div class="container">
+        <div class="section_heading text-center">
+            <strong>tag</strong>
+            <h2>logout</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tellus est, finibus ut congue sed,
+                faucibus ut dui. Sed congue nisl dolor, id dapibus leo elementum posuere.</p>
+            <div class="sm_border"></div>
+        </div>
+        <form id="contact-form" method="post" action="{% url 'account_logout' %}">
+            {% csrf_token %}
+            <div class="row">
+                <div class="input_padding text-center">
+                    <div class="form-group mb0 col-sm-12">
+                        <div class="actions">
+                            <button type="submit" value="Logout" name="submit"
+                                    class="btn btn-lg main_btn btn_shadow" title="Logout">{% trans 'Logout' %}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+
+{% endblock content %}

@@ -1,0 +1,128 @@
+@media screen and (min-width: 1200px) {
+  .container {
+    max-width: 1200px;
+  }
+}
+
+@media only screen and (max-width:991px){
+	.about_image:before {
+		right: 124px !important;
+	}
+	.rs_pb_70{
+		padding-bottom: 70px !important;
+	}
+	.res_border_none{
+		border: none !important;
+	}
+	.single_counter{
+		margin-bottom: 50px;
+	}
+	.single_testimonial{
+		margin-bottom: 30px !important;
+	}
+	.single_blog .post-content{
+		margin-top: 30px;
+	}
+	.contact_widget_area{
+		margin-left: 0 !important;
+		margin-top: 30px;
+	}
+}
+
+@media only screen and (max-width: 767px) { 
+	.main_menu{
+		display:none;
+	}
+	.navbar-default .navbar-nav>li>a{
+		color: #222 !important;
+	}
+	.navbar-default .navbar-nav>li>a:hover,
+	.navbar-default .navbar-nav>li>a:focus{
+		color: #1461ff !important;
+	}
+	.navbar-default .navbar-nav>.active>a, 
+	.navbar-default .navbar-nav>.active>a:hover,
+	.navbar-default .navbar-nav>.active>a:focus{
+		color: #1461ff !important;
+		background-color: transparent;
+	}
+	.mobile-nav{
+		display: block !important;
+	}
+	.slicknav_btn {
+		background: #0d42b2;
+		border-radius: 0px;
+		margin: 5px 0 0;
+	}
+	.slicknav_menu {
+		display: block;
+		background: transparent;
+	}
+	.slicknav_nav {
+		color: #fff;
+		margin: 0;
+		padding: 15px 0;
+		list-style: none;
+		overflow: hidden;
+		position: absolute;
+		top: 75px;
+		width: 350px;
+		left: auto;
+		right: -8%;
+		background: #fff;
+		float: right;
+		box-shadow: -1px 1px 1px rgba(20, 97, 255, 0.1);
+	}
+	.slicknav_btn {
+		text-decoration: none;
+		text-shadow: none;
+		border-radius: 0;
+		background-color: transparent;
+	}
+	.slicknav_menu .slicknav_icon-bar {
+		width: 28px;
+		height: 3px;
+		-webkit-border-radius: 0px;
+		-moz-border-radius: 0px;
+		border-radius: 0;
+		-webkit-box-shadow: 0;
+		-moz-box-shadow: 0;
+		box-shadow: 0;
+	}
+	.navbar-default.menu-shrink .slicknav_menu .slicknav_icon-bar{
+		background: #222;
+	}
+	.banner_content strong{
+		font-size: 26px !important;
+	}
+	.banner_content h1{
+		font-size: 45px !important;
+	}
+	.about_image{
+		text-align: center;
+	}
+	.about_image:before {
+		display: none !important;
+	}
+	.about_content_area{
+		margin-top: 50px;
+	}
+	.border_left{
+		border-left: none !important;
+	}
+	.owl-nav{
+		display: none;
+	}
+	.footer{
+		text-align: center;
+	}
+	.footer .social-link  {
+		float: inherit !important;
+		padding-left: 0;
+		margin-top: 20px;
+	}
+}
+
+@media only screen and (max-width: 480px) { 
+	
+}

@@ -1,0 +1,58 @@
+{% load static %}
+<!doctype html>
+<html lang="zxx">
+	<head>
+		<!-- Meta -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<!-- SITE TITLE -->
+		<title>Dekha Personal Portfolio Template</title>
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,700,800" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,400i,500,600,600i,700,800" rel="stylesheet">
+		<link href="{% static 'fonts/font-awesome.min.css' %}" rel="stylesheet"/>
+		<link href="{% static 'fonts/themify-icons.css' %}" rel="stylesheet"/>
+		<link href="{% static 'fonts/etline.css' %}" rel="stylesheet"/>
+		<link href="{% static 'css/plugins.css' %}" rel="stylesheet"/>
+		<link href="{% static 'css/lightbox.min.css' %}" rel="stylesheet"/>
+		<link href="{% static 'css/responsive.css' %}" rel="stylesheet"/>
+		<link href="{% static 'css/style.css' %}" rel="stylesheet"/>
+<!--		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>-->
+<!--		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>-->
+	</head>
+	<body data-spy="scroll" data-offset="80">
+
+		{% include "navbar.html" %}
+
+		{% block content %}
+		{% endblock content %}
+
+		{% include "footer.html" %}
+		<script src="{% static 'js/jquery.min.js' %}"></script>
+		<script src="{% static 'js/bootstrap.min.js' %}"></script>
+		<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+		<script src="{% static 'js/modernizr-2.8.3.min.js' %}"></script>
+		<script src="{% static 'js/jquery.nav.js' %}"></script>
+		<script src="{% static 'js/jquery.inview.min.js' %}"></script>
+		<script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+		<script src="{% static 'js/animated-headline.js' %}"></script>
+		<script src="{% static 'js/jquery.ripples-min.js' %}"></script>
+		<script src="{% static 'js/lightbox.min.js' %}"></script>
+		<script src="{% static 'js/slick-nav.js' %}"></script>
+
+		<script src="{% static 'js/scrolltopcontrol.js' %}"></script>
+		<script src="{% static 'js/wow.min.js' %}"></script>
+		<script type="text/javascript">
+			jQuery(document).ready(function(){
+				var $home = $('#home');
+				$home.ripples({
+					resolution: 512,
+					dropRadius: 20,
+					perturbance: 0.04,
+				});
+			});
+		</script>
+		<script src="{% static 'js/main.js' %}"></script>
+	</body>
+</html>

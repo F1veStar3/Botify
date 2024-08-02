@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="section_padding">
+    <div class="container">
+        <div class="section_heading text-center">
+            <strong>{{ category.tag }}</strong>
+            <h2>{{ category.name }}</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tellus est, finibus ut congue sed,
+                faucibus ut dui. Sed congue nisl dolor, id dapibus leo elementum posuere.</p>
+            <div class="sm_border"></div>
+        </div>
+
+        <div class="work_content_area">
+            {% for product in products %}
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="item-img">
+                    <img src="{{ product.img.url }}" alt=""/>
+                    <div class="item-img-overlay">
+                        <div class="overlay-info full-width">
+                            <p>{{ product.name }}</p>
+                            <h5>{{ product.description }}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock content %}

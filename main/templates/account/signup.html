@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load i18n %}
+{% load socialaccount %}
+
+<section class="section_padding">
+    <div class="container">
+        <div class="section_heading text-center">
+            <strong>tag</strong>
+            <h2>Login</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tellus est, finibus ut congue sed,
+                faucibus ut dui. Sed congue nisl dolor, id dapibus leo elementum posuere.</p>
+            <div class="sm_border"></div>
+        </div>
+        <form id="contact-form" method="post" action="{% url 'account_signup' %}">
+            {% csrf_token %}
+            <div class="row">
+                <div class="input_padding text-center">
+                    <div class="form-group col-sm-12">
+                        <input type="text" name="username" class="form-control" id="username"
+                               placeholder="{% trans 'Username' %} *"
+                               required="required">
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <input type="email" name="email" class="form-control" id="email"
+                               placeholder="{% trans 'Email' %} *"
+                               required="required">
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <input type="password" name="password1" class="form-control" id="password1"
+                               placeholder="{% trans 'Password' %} *"
+                               required="required">
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <input type="password" name="password2" class="form-control" id="password2"
+                               placeholder="{% trans 'Confirm Password' %} *"
+                               required="required">
+                    </div>
+                    <div class="form-group mb0 col-sm-12">
+                        <div class="actions">
+                            <button type="submit" value="Signup" name="submit"
+                                    class="btn btn-lg main_btn btn_shadow" title="Signup">{% trans 'Signup' %}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="text-center">
+            <a href="{% url 'account_login' %}">login</a>
+        </div>
+        <div class="text-center">
+            <a href="{% provider_login_url 'google' %}">Google</a>
+            <a href="{% provider_login_url 'telegram' %}">Telegram</a>
+            <a href="{% provider_login_url 'yandex' %}">Yandex</a>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
