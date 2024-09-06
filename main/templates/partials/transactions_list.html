@@ -1,0 +1,21 @@
+{% for transaction in t_page_obj %}
+<tr>
+    <th scope="row">{{ forloop.counter|add:t_page_obj.start_index|add:"-1" }}</th>
+    <td style="color:green;">+{{ transaction.quantity }}</td>
+    <td>{{ transaction.total_price }}₽</td>
+    <td>{{ transaction.timestamp|date:"d.m.y H:i"}}</td>
+</tr>
+{% endfor %}
+
+{% if t_page_obj.has_next %}
+    <tr id="load-more-1">
+        <td colspan="4" class="text-center">
+            <button class="btn btn-lg main_btn btn_shadow"
+                    hx-trigger="click"
+                    hx-headers='{"trigger": "transactions"}'
+                    hx-get="{% url 'profile' %}?page={{t_page_obj.next_page_number}}"
+                    hx-target="#load-more-1"
+                    hx-swap="outerHTML">Еще</button>
+        </td>
+    </tr>
+{% endif %}

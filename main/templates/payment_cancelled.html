@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="section_padding">
+    <div class="container">
+        <div class="section_heading text-center">
+            <strong>Оплата</strong>
+            <h2>Что-то пошло не так!</h2>
+            <p>Ваш платеж был отменен. Если это ошибка, попробуйте еще раз.</p>
+            <p><a href="{% url 'base' %}">
+                Вернуться на главную</a></p>
+            <div class="sm_border"></div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "index.html" %}
+{% block title %}Аутентификация{% endblock %}
+
+{% load i18n %}
+{% block content %}
+
+
+<section class="section_padding">
+    <div class="container">
+        <div class="section_heading text-center">
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-lg main_btn btn_shadow">
+                Далее
+            </button>
+        </form>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

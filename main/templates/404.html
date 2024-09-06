@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="section_padding">
+    <div class="container">
+        <div class="section_heading text-center">
+            <strong>ошибка</strong>
+            <h2>404</h2>
+            <p>Упс! Страница, которую вы ищете, не найдена.</p>
+            <p><a href="{% url 'base' %}">
+                Вернуться домой</a></p>
+            <div class="sm_border"></div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

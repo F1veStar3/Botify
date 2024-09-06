@@ -1,8 +1,20 @@
 from django import forms
 from django.contrib.auth.models import User
+from .models import Profile, Review
 
-from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
-from .models import Message, Profile, Review
+
+# class PurchaseForm(forms.Form):
+#     quantity = forms.IntegerField(min_value=1, widget=forms.HiddenInput())
+#
+#     def __init__(self, *args, **kwargs):
+#         self.stock = kwargs.pop('stock', None)
+#         super().__init__(*args, **kwargs)
+#         if self.stock:
+#             self.fields['quantity'].widget.attrs.update({
+#                 'min': self.stock.minimum_purchase_quantity,
+#                 'max': self.stock.remaining_quantity,
+#                 'data-price-per-unit': self.stock.price_per_unit
+#             })
 
 
 class ReviewForm(forms.ModelForm):
@@ -21,9 +33,3 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['logo']
-
-
-class MessageForm(forms.ModelForm):
-    class Meta:
-        model = Message
-        fields = ['recipient', 'subject', 'body']

@@ -1,0 +1,41 @@
+<style>
+    .icon svg {
+        width: 100px;
+        height: 100px;
+    }
+</style>
+
+<section id="service" class="gray_bg section_padding pb_70">
+    <div class="container">
+        <div class="col-md-12 col-sm-12-col-xs-12">
+            <div class="section_heading text-center">
+                <strong>информация</strong>
+                <h2>Наши возможности</h2>
+                <p>Наш бот для Telegram предлагает широкий спектр возможностей для работы с изображениями. Мы
+                    предоставляем инструменты для создания уникальных изображений, их модификации и анимации. Наши
+                    функции включают в себя настройку графических элементов, применение эффектов и анимаций, а также
+                    интеграцию с вашими проектами для повышения их визуальной привлекательности.</p>
+                <div class="sm_border"></div>
+            </div>
+        </div>
+
+        <div class="row text-center">
+            {% for service in services %}
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="single-service">
+                    <i>
+                        <div class="icon">
+                            {{ service.svg_icon|safe }}
+                        </div>
+                    </i>
+                    <h4>{{ service.title }}</h4>
+                    <p>{{ service.description }}</p>
+                </div>
+            </div> <!-- End Col -->
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+

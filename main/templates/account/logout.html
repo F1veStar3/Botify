@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% block title %}Аутентификация{% endblock %}
 
 {% block content %}
 {% load i18n %}
@@ -6,10 +7,9 @@
 <section class="section_padding">
     <div class="container">
         <div class="section_heading text-center">
-            <strong>tag</strong>
-            <h2>logout</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tellus est, finibus ut congue sed,
-                faucibus ut dui. Sed congue nisl dolor, id dapibus leo elementum posuere.</p>
+            <strong>выход</strong>
+            <h2>Выйти</h2>
+            <p>Вы уверены, что хотите выйти из своей учетной записи? Нажмите кнопку ниже, чтобы завершить сеанс.</p>
             <div class="sm_border"></div>
         </div>
         <form id="contact-form" method="post" action="{% url 'account_logout' %}">
@@ -19,7 +19,7 @@
                     <div class="form-group mb0 col-sm-12">
                         <div class="actions">
                             <button type="submit" value="Logout" name="submit"
-                                    class="btn btn-lg main_btn btn_shadow" title="Logout">{% trans 'Logout' %}
+                                    class="btn btn-lg main_btn btn_shadow" title="Выйти">{% trans 'Выйти' %}
                             </button>
                         </div>
                     </div>
@@ -28,6 +28,5 @@
         </form>
     </div>
 </section>
-
 
 {% endblock content %}

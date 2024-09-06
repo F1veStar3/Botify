@@ -1,0 +1,25 @@
+<ul class="edu-list">
+    {% for notification in n_page_obj %}
+    <li>
+        <strong>{{ notification.created_at|date:"d.m.y H:i" }}</strong>
+        <h5>{{ notification.title }}</h5>
+        <p>{{ notification.message }}</p>
+    </li>
+    {% endfor %}
+</ul>
+
+
+{% if n_page_obj.has_next %}
+<div id="load-more-2" class="text-center">
+
+    <button class="btn btn-lg main_btn btn_shadow"
+            hx-trigger="click"
+            hx-headers='{"trigger": "notifications"}'
+            hx-get="{% url 'profile' %}?page={{n_page_obj.next_page_number}}"
+            hx-target="#load-more-2"
+            hx-swap="outerHTML">Еще
+    </button>
+
+</div>
+{% endif %}
+

@@ -59,21 +59,22 @@
 		/* END LIGHTBOX JS */
 		
 		/* START COUNDOWN JS */
-			$('#counter_area').on('inview', function(event, visible, visiblePartX, visiblePartY) {
-				if (visible) {
-					$(this).find('.counter').each(function () {
-						var $this = $(this);
-						$({ Counter: 0 }).animate({ Counter: $this.text() }, {
-							duration: 5000,
-							easing: 'swing',
-							step: function () {
-								$this.text(Math.ceil(this.Counter));
-							}
-						});
-					});
-					$(this).unbind('inview');
-				}
-			});
+$('#counter_area').on('inview', function(event, visible, visiblePartX, visiblePartY) {
+    if (visible) {
+        $(this).find('.counter').each(function () {
+            var $this = $(this);
+            var finalValue = parseFloat($this.text().replace(',', '')); // Зчитування числа з десятковими знаками
+            $({ Counter: 0 }).animate({ Counter: finalValue }, {
+                duration: 5000,
+                easing: 'swing',
+                step: function (now) {
+                    $this.text(Math.floor(now).toLocaleString('en-US')); // Відображення без десяткових знаків
+                }
+            });
+        });
+        $(this).unbind('inview');
+    }
+});
 		/* END COUNDOWN JS */
 		
 		/* START TESTIMONIAL JS */
@@ -105,12 +106,12 @@
 		/* END TESTIMONIAL JS */
 	});	
 	
-//		/*PRELOADER JS*/
+		/*PRELOADER JS*/
 //			$(window).on('load', function() {
 //				$('.spinner').fadeOut();
 //				$('.preloader').delay(350).fadeOut('slow');
 //			});
-//		/*END PRELOADER JS*/
+		/*END PRELOADER JS*/
 		
 		// Wow
 			new WOW().init();

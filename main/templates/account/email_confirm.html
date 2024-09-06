@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}Аутентификация{% endblock %}
+{% load i18n %}
+{% load account %}
+{% load allauth %}
+
+
+{% block content %}
+<section class="section_padding">
+    <div class="container">
+        <div class="section_heading text-center">
+            <strong>Подтверждение Email</strong>
+            <h2>Подтверждение Email</h2>
+            <p>{% trans "An email has been sent to your email address for confirmation." %}</p>
+            <p>{% trans "Please click on the link in the email to confirm your account." %}</p>
+            <div class="sm_border"></div>
+        </div>
+
+        {% if confirmation %}
+            <div class="text-center">
+                {% user_display confirmation.email_address.user as user_display %}
+                {% if can_confirm %}
+                    <p>{% blocktrans with confirmation.email_address.email as email %}Please confirm that <a href="mailto:{{ email }}">{{ email }}</a> is an email address for user {{ user_display }}.{% endblocktrans %}</p>
+                    {% url 'account_confirm_email' confirmation.key as action_url %}
+                    <form method="post" action="{{ action_url }}">
+                        {% csrf_token %}
+                        {{ redirect_field }}
+                        <button type="submit" class="btn btn-lg main_btn btn_shadow">{% trans 'Confirm' %}</button>
+                    </form>
+                {% else %}
+                    <p>{% blocktrans %}Unable to confirm {{ email }} because it is already confirmed by a different account.{% endblocktrans %}</p>
+                {% endif %}
+            </div>
+        {% else %}
+            <div class="text-center">
+                {% url 'account_email' as email_url %}
+                <p>{% blocktrans %}This email confirmation link expired or is invalid. Please <a href="{{ email_url }}">issue a new email confirmation request</a>.{% endblocktrans %}</p>
+            </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock content %}

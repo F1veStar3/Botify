@@ -1,0 +1,30 @@
+<!-- START NAVBAR -->
+<div class="navbar navbar-default navbar-fixed-top menu-top">
+    <div class="container">
+        <div class="logo">
+            <a href="{% url 'base' %}" class="navbar-brand"><p style="color:black;">AVRORAAI</p></a>
+            <div class="mobile-nav"></div>
+        </div>
+
+        <div id="navbar" class="main_menu">
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a style="color:black;" href="{% url 'base' %}">Главная</a></li>
+                <li><a style="color:black;" href="{% url 'about' %}">О нас</a></li>
+
+                {% if request.user.is_authenticated %}
+                <li><a style="color:black;"  href="{% url 'profile' %}">Профиль</a></li>
+                <li><a style="color:black;" href="{% url 'account_logout' %}">Выйти</a></li>
+                {% else %}
+                <li><a style="color:black;" href="{% url 'account_login' %}">Войти</a></li>
+                <li><a style="color:black;" href="{% url 'account_signup' %}">Регистрация</a></li>
+                {% endif %}
+
+            </ul>
+
+        </div>
+
+    </div><!--- END CONTAINER -->
+</div>
+
+<!-- END NAVBAR -->

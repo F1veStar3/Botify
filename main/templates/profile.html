@@ -1,243 +1,246 @@
 {% extends 'base.html' %}
+{% block title %}Профиль{% endblock %}
+
 
 {% block content %}
 {% load static %}
-<style>
-    .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
-        color: #495057;
-        background-color: #fff;
-        border-color: #dee2e6 #dee2e6 #fff;
-    }
-
-    .nav-tabs .nav-link {
-        border: 1px solid transparent;
-        border-top-left-radius: .25rem;
-        border-top-right-radius: .25rem;
-        color: #777;
-    }
-
-    .nav-tabs {
-        justify-content: center;
-    }
-
-    /* User Info Section */
-    .user-info {
-        text-align: center;
-        margin-bottom: 50px;
-
-    }
-    .user-logo {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        margin-bottom: 20px;
-        cursor: pointer;
-    }
-    .user-name {
-        font-size: 24px;
-        color: #222;
-        margin-bottom: 10px;
-    }
-    .user-email {
-        font-size: 18px;
-        color: #777;
-    }
-
-    /* Transaction History Section */
-    .transaction-history {
-        margin-bottom: 50px;
-    }
-
-    /* Refund Request Section */
-    .refund-request {
-        margin-bottom: 50px;
-    }
-
-    /* Empty Section */
-    .empty-section {
-        text-align: center;
-    }
-    .empty-section p {
-        font-size: 18px;
-        color: #777;
-    }
-
-    /* Center content in tab panes */
-    .tab-pane {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-    }
-
-    /* Remove margin before section heading */
-    .section_heading {
-        margin-bottom: 0;
-    }
-</style>
 
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const userLogo = document.getElementById('user-logo');
-        const fileInput = document.querySelector('input[name="logo"]');
-
-        userLogo.addEventListener('mouseover', function () {
-            userLogo.style.opacity = '0.7'; // Зміна непрозорості для вказівки на наведення
-        });
-
-        userLogo.addEventListener('mouseout', function () {
-            userLogo.style.opacity = '1'; // Скидання непрозорості
-        });
-
-        userLogo.addEventListener('click', function () {
-            fileInput.click();
-        });
-
-        fileInput.addEventListener('change', function () {
-            document.getElementById('profile-form').submit();
-        });
-    });
-</script>
-
-
-<div class="profile-page section_padding gray_bg">
+<section id="blog" class="section_padding pb_70">
     <div class="container">
-        <!-- User Info Section -->
-        <div class="user-info">
-            <form id="profile-form" action="{% url 'profile' %}" method="post"
-                  enctype="multipart/form-data">
-                {% csrf_token %}
-                <input type="file" id="file-input" name="logo" accept="image/*" style="display:none;">
-                <img src="{{ user.profile.get_logo }}" alt="User Logo" class="user-logo" id="user-logo">
-            </form>
-            <h3 class="user-name">{{ user.first_name }} {{ user.last_name }}</h3>
-            <p class="user-email">{{ user.email }}</p>
-        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12-col-xs-12">
+                <div class="section_heading text-center">
+                    <strong>Профиль</strong>
+                    <h2>Профиль</h2>
+                    <div class="sm_border"></div>
+                </div>
+            </div>
 
-        <!-- Nav Tabs -->
-        <ul class="nav nav-tabs justify-content-center border-secondary mb-4">
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#tab-pane-2">Transaction History</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#tab-pane-3">Change Info</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#tab-pane-4">Refund Request</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#tab-pane-5">купить</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#tab-pane-6">
-                    Messages{% if user_messages %}({{ user_messages|length }}){% endif %}
-                </a>
-            </li>
-        </ul>
-        <div class="tab-content">
-            <!-- Transaction History Section -->
-            <div class="tab-pane fade" id="tab-pane-2">
-                <div class="transaction-history">
-                    <div class="section_heading">
-                        <h2>Transaction History</h2>
-                    </div>
-                </div>
+            <div class="user-info">
+                <form id="profile-form" action="{% url 'profile' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="file" id="file-input" name="logo" accept="image/*" style="display:none;">
+                    <img src="{{ user.profile.get_logo }}" alt="Логотип пользователя" class="user-logo" id="user-logo">
+                </form>
+                <h3 class="user-name">{{ user.first_name }} {{ user.last_name }}</h3>
+                <p class="user-email">{{ user.email }}</p>
             </div>
-            <!-- Change Info Section -->
-            <div class="tab-pane fade" id="tab-pane-3">
-                <div class="change-info">
-                    <div class="section_heading">
-                        <h2>Change Info</h2>
-                        <form id="contact-form" method="post" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            <div class="form-group col-sm-12">
-                                <input type="text" name="first_name" class="form-control" id="first_name"
-                                       placeholder="Name *"
-                                       required="required">
-                            </div>
-                            <div class="form-group col-sm-12">
-                                <input type="text" name="last_name" class="form-control" id="last_name"
-                                       placeholder="Last name *"
-                                       required="required">
-                            </div>
-                            <div class="form-group col-sm-12">
-                                <input type="text" name="email" class="form-control" id="email"
-                                       placeholder="Email *"
-                                       required="required">
-                            </div>
-                            <button type="submit" value="Send message" name="user_form"
-                                    class="btn btn-lg main_btn btn_shadow">Update User
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <!-- Refund Request Section -->
-            <div class="tab-pane fade" id="tab-pane-4">
-                <div class="refund-request">
-                    <div class="section_heading">
-                        <h2>Refund Request</h2>
-                    </div>
-                </div>
-            </div>
-            <!-- Empty Section -->
-            <div class="tab-pane fade" id="tab-pane-5">
-                <div class="empty-section">
-                    <div class="section_heading">
-                        <h2>Empty Section</h2>
-                    </div>
-                    <p>This is an empty section.</p>
-                </div>
-            </div>
-            <!-- Messages Section -->
-            <div class="tab-pane fade" id="tab-pane-6">
-                <div class="messages-section">
-                    <ul class="list-group">
-                        {% for message in user_messages %}
-                        <li class="list-group-item">
-                            <strong>{{ message.subject }}</strong><br>
-                            {{ message.body }}<br>
-                            <small>{{ message.created_at|date:"M d, Y H:i" }}</small>
-                        </li>
-                        {% empty %}
-                        <li class="list-group-item">No messages</li>
-                        {% endfor %}
-                    </ul>
+
+        </div>
+    </div>
+</section>
+
+
+{% if n_page_obj %}
+<section id="resume" class="section_padding pb_70" style="background: #fafafa;">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="education-container wow fadeInUp">
+                    {% include 'partials/notification_list.html' %}
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
+{% endif %}
+
+<section id="counter_area" class="section_padding rs_pb_70">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="single_counter">
+                    <div class="icon">
+                        <i class="icon-happy"></i>
+                    </div>
+                    <span class="counter">{{ user_transactions.count }}</span>
+                    <h5>Совершено транзакций</h5>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="single_counter border_left">
+                    <div class="icon">
+                        <i class="icon-briefcase"></i>
+                    </div>
+                    <span class="counter">{% if total_quantity %}{{ total_quantity }}{% else %}0{% endif %}</span>
+                    <h5>На вашем счету</h5>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="single_counter border_left res_border_none">
+                    <div class="icon">
+                        <i class="icon-trophy"></i>
+                    </div>
+
+                    <span class="counter">{% if total_price %}{{ total_price }}{% else %}0{% endif %}</span>
+
+                    <h5>На общую сумму</h5>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="single_counter border_left">
+                    <div class="icon">
+                        <i class="icon-profile-male"></i>
+                    </div>
+                    <span class="counter">0</span>
+                    <h5>Новых уведомлений</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section_padding">
+    <div class="container">
+        <div class="section_heading text-center">
+            <strong>Купить</strong>
+            <h2>Купить акции</h2>
+            <p>Инвестируйте в наши акции, чтобы стать частью нашего проекта и получать выгоду от его развития. Цена за
+                единицу: {{ stock.price_per_unit }}</p>
+            <div class="sm_border"></div>
+        </div>
+        <form method="post" id="contact-form">
+            {% csrf_token %}
+            <div class="form-group col-sm-12 range-container">
+                <span>{{ stock.minimum_purchase_quantity }}</span>
+                <input type="range" class="form-control-range mx-2" id="quantityRange"
+                       min="{{ stock.minimum_purchase_quantity }}"
+                       max="{{ stock.remaining_quantity }}"
+                       value="{{ stock.minimum_purchase_quantity }}">
+                <span>{{ stock.remaining_quantity }}</span>
+            </div>
+            <div class="form-group col-sm-6">
+                <label for="quantityInput">Количество:</label>
+                <input type="number" class="form-control" id="quantityInput"
+                       min="{{ stock.minimum_purchase_quantity }}" max="{{ stock.remaining_quantity }}"
+                       value="{{ stock.minimum_purchase_quantity }}">
+            </div>
+            <div class="form-group col-sm-6">
+                <label for="total-price">Общая стоимость:</label>
+                <input type="text" class="form-control" id="total-price" value="0.00" readonly>
+            </div>
+            <input type="hidden" name="quantity" id="quantity"
+                   value="{{ stock.minimum_purchase_quantity }}">
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-lg main_btn btn_shadow" name="pay_form">Купить
+                </button>
+            </div>
+        </form>
 
 
+    </div>
+</section>
+
+<!-- transaction_list.html -->
+<section class="section_padding" style="background: #fafafa;">
+    <div class="container">
+        <div class="col-md-12 col-sm-12-col-xs-12">
+            <div class="section_heading text-center">
+                <strong>История</strong>
+                <h2>История транзакций</h2>
+                <p>В этом разделе вы можете просмотреть подробную историю всех ваших транзакций. Мы сохраняем все данные
+                    для вашего удобства и предоставляем доступ к полной информации о каждом платеже.</p>
+                <div class="sm_border"></div>
+            </div>
+        </div>
+
+        {% if t_page_obj %}
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Акции</th>
+                <th scope="col">Цена</th>
+                <th scope="col">Дата</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% include 'partials/transactions_list.html'%}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="text-center">Пока нет транзакций.</p>
+        {% endif %}
+
+    </div>
+</section>
+
+
+<section class="section_padding pb_70">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12-col-xs-12">
+                <div class="section_heading text-center">
+                    <strong>Параметры</strong>
+                    <h2>Изменить персональную информацию</h2>
+                    <p>Здесь вы можете обновить свои персональные данные, такие как имя, контактную информацию и другие
+                        параметры. Мы обеспечиваем конфиденциальность и безопасность ваших данных.</p>
+                    <div class="sm_border"></div>
+                </div>
+            </div>
+            <form id="contact-form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group col-sm-6">
+                    <input type="text" name="first_name" class="form-control" id="first_name"
+                           placeholder="Имя *" value="{{ user.first_name }}" required="required">
+                </div>
+                <div class="form-group col-sm-6">
+                    <input type="text" name="last_name" class="form-control" id="last_name"
+                           placeholder="Фамилия *" value="{{ user.last_name }}" required="required">
+                </div>
+                <div class="form-group col-sm-12">
+                    <input type="text" name="email" class="form-control" id="email"
+                           placeholder="Электронная почта *" value="{{ user.email }}"
+                           required="required">
+                </div>
+                <div class="text-center">
+                    <button type="submit" value="Send message" name="user_form"
+                            class="btn btn-lg main_btn btn_shadow">Обновить данные
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const quantityRange = document.querySelector('#quantityRange');
+        const quantityInput = document.querySelector('#quantityInput');
+        const totalPriceElement = document.querySelector('#total-price');
+        const hiddenQuantityInput = document.querySelector('#quantity'); // Використовуйте правильний id
+        const pricePerUnit = parseFloat('{{ stock.price_per_unit }}');
+
+        function updateTotalPrice() {
+            const quantity = parseInt(quantityInput.value) || parseInt(quantityRange.value) || 0;
+            const totalPrice = (quantity * pricePerUnit).toFixed(2) + '$';
+            totalPriceElement.value = totalPrice;
+            hiddenQuantityInput.value = quantity; // Update the hidden input with the selected quantity
+            console.log('Quantity:', hiddenQuantityInput.value); // Дебаг
+        }
+
+        quantityRange.addEventListener('input', function() {
+            quantityInput.value = quantityRange.value;
+            updateTotalPrice();
+        });
+
+        quantityInput.addEventListener('input', function() {
+            quantityRange.value = quantityInput.value;
+            updateTotalPrice();
+        });
+
+        updateTotalPrice();
+    });
+
+</script>
 {% endblock content %}
 
-
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Profile</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--    <h1>Profile</h1>-->
-<!--    <form method="post" enctype="multipart/form-data">-->
-<!--        {% csrf_token %}-->
-<!--        <h2>Update Profile</h2>-->
-<!--        {{ user_form.as_p }}-->
-<!--        {{ profile_form.as_p }}-->
-<!--        <button type="submit">Save changes</button>-->
-<!--    </form>-->
-
-<!--    <h2>Change Password</h2>-->
-<!--    <form method="post">-->
-<!--        {% csrf_token %}-->
-<!--        {{ password_form.as_p }}-->
-<!--        <button type="submit">Change password</button>-->
-<!--    </form>-->
-<!--</body>-->
-<!--</html>-->
 
 
 
