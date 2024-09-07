@@ -16,11 +16,11 @@
                     <h1 style='font-size: 40px;' class="cd-headline clip">
                         <span class="fw_600">Я твой умный помощник для</span><br>
                         <span class="cd-words-wrapper">
-                            <b class="is-visible fw_300">создания </b>
-                            <b class="fw_300">изменения </b>
-                            <b class="fw_300">анимирования</b>
+                            <b class="is-visible fw_300">создания <br class="mobile-break-m"> изображений </b>
+                            <b class="fw_300">изменения <br class="mobile-break-m"> изображений </b>
+                            <b class="fw_300">анимирования <br class="mobile-break-m"> изображений</b>
                         </span>
-                        <span class="fw_600">изображений</span>
+                        <!--                        <span class="fw_600"></span>-->
                     </h1>
                     <p>Если вы хотите поддержать проект, вы можете стать инвестором. Вся информация находится в личном
                         профиле.</p>
@@ -34,12 +34,11 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-md-5 col-sm-12 col-xs-12"></div>
         </div>
     </div>
 </section>
 <!-- START ABOUT -->
-<section class="section_padding">
+<section class="section_padding_desc">
     <div class="container">
         <div class="single_about">
             <div class="about_content_area">
@@ -52,16 +51,21 @@
                     - Анимировать любые изображения 🤯<br>
                     - Улучшать качество изображений 🔮<br>
                 </p>
-                <div class="about_details">
-                    <div class="ct_about">
-                        <span><i class="fa fa-whatsapp"></i> What'sUp </span>
-                        +37259208680
-                    </div>
-                    <div class="ct_about">
-                        <span><i class="fa fa-envelope"></i> Email </span>
-                        avroraai.bot@gmail.com
-                    </div>
-                </div>
+                <!--                <div class="about_details">-->
+                <!--                    <div class="і">-->
+                <!--                        <span><i class="fa fa-whatsapp"></i> What'sUp </span>-->
+                <!--                        <a target='_blank' href="https://wa.me/37259208680">-->
+                <!--                            +37259208680-->
+                <!--                        </a>-->
+                <!--                    </div>-->
+                <!--                    <div class="ct_about">-->
+                <!--                        <span><i class="fa fa-envelope"></i> Email </span>-->
+                <!--                        <a target='_blank'-->
+                <!--                           href="https://mail.google.com/mail/u/0/?fs=1&to=avroraai.bot@gmail.com&su=&body=&tf=cm">-->
+                <!--                            avroraai.bot@gmail.com-->
+                <!--                        </a>-->
+                <!--                    </div>-->
+                <!--                </div>-->
             </div>
         </div>
     </div>
@@ -72,6 +76,7 @@
 
 
 {% include 'includes/overview.html' %}
+
 
 {% include 'includes/counter.html' %}
 
@@ -121,7 +126,8 @@
             <div class="section_heading text-center">
                 <strong>информация</strong>
                 <h2>Контактная информация</h2>
-                <p>Если у вас есть вопросы или предложения, вы можете связаться с нами в любое время. Мы готовы помочь
+                <p>Если у вас есть вопросы или предложения, вы можете связаться с нами в любое время. Мы готовы
+                    помочь
                     вам и обсудить возможности использования нашего бота для создания уникальных изображений и
                     анимаций.</p>
                 <div class="sm_border"></div>
@@ -135,7 +141,8 @@
                     <div class="row">
                         <div class="input_padding text-center">
                             <div class="form-group col-sm-12">
-                                <input type="text" name="name" class="form-control" id="first-name" placeholder="Имя *"
+                                <input type="text" name="name" class="form-control" id="first-name"
+                                       placeholder="Имя *"
                                        required="required">
                             </div>
                             <div class="form-group col-sm-6">
@@ -156,9 +163,9 @@
                             <div class="form-group mb0 col-sm-12">
                                 <div class="actions">
                                     <button type="submit" value="Отправить сообщение" name="submit"
-                                            class="btn btn-lg main_btn btn_shadow" title="Отправить ваше сообщение!">
-                                        Отправить
-                                        сообщение
+                                            class="btn btn-lg main_btn btn_shadow"
+                                            title="Отправить ваше сообщение!">
+                                        Оставить отзыв
                                     </button>
                                 </div>
                             </div>
@@ -174,7 +181,9 @@
                         <i class="fa fa-whatsapp"></i>
                         <div class="contact_info_text">
                             <h5>What'sUp</h5>
-                            <p>+37259208680</p>
+                            <a target='_blank' href="https://wa.me/37259208680">
+                                <p>+37259208680</p>
+                            </a>
                         </div>
                     </div>
 
@@ -182,7 +191,10 @@
                         <i class="fa fa-envelope"></i>
                         <div class="contact_info_text">
                             <h5>Email</h5>
-                            <p>avroraai.bot@gmail.com</p>
+                            <a target='_blank'
+                               href="https://mail.google.com/mail/u/0/?fs=1&to=avroraai.bot@gmail.com&su=&body=&tf=cm">
+                                <p>avroraai.bot@gmail.com</p>
+                            </a>
                         </div>
                     </div>
                 </div>

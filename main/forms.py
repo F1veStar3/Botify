@@ -1,20 +1,12 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Profile, Review
+from .models import Profile, Review, Notification
 
 
-# class PurchaseForm(forms.Form):
-#     quantity = forms.IntegerField(min_value=1, widget=forms.HiddenInput())
-#
-#     def __init__(self, *args, **kwargs):
-#         self.stock = kwargs.pop('stock', None)
-#         super().__init__(*args, **kwargs)
-#         if self.stock:
-#             self.fields['quantity'].widget.attrs.update({
-#                 'min': self.stock.minimum_purchase_quantity,
-#                 'max': self.stock.remaining_quantity,
-#                 'data-price-per-unit': self.stock.price_per_unit
-#             })
+class NotificationForm(forms.ModelForm):
+    class Meta:
+        model = Notification
+        fields = ['title', 'message']
 
 
 class ReviewForm(forms.ModelForm):

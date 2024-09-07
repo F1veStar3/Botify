@@ -36,6 +36,56 @@
 
 
 
+
+
+
+
+
+#map-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#map {
+    width: 600px;
+    height: 500px;
+}
+
+
+/* User Info Section */
+
+    .user-info {
+        text-align: center;
+        margin-bottom: 50px;
+
+    }
+    .user-logo {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin-bottom: 20px;
+        cursor: pointer;
+    }
+    .user-name {
+        font-size: 24px;
+        color: #222;
+        margin-bottom: 10px;
+    }
+    .user-email {
+        font-size: 18px;
+        color: #777;
+    }
+
+/* Profile */
+    .range-container {
+        display: flex;
+        align-items: center;
+    }
+    .range-container span {
+        margin: 0 10px;
+    }
+
 /* ----------------------------------------------------------------
     [ 01 Start Basics ]
 -----------------------------------------------------------------*/
@@ -154,6 +204,11 @@ a:hover{
 .section_padding{
 	padding: 100px 0;
 }
+
+.section_padding_desc{
+	padding: 20px 0;
+}
+
 .pb_70{
 	padding-bottom: 70px;
 }
@@ -341,7 +396,7 @@ a:hover{
      [ 04 Start Banner ]
 -----------------------------------------------------------------*/
 .main_banner{
-	height: 700px;
+	height: 750px;
 	background-size: cover;
 	background-repeat: no-repeat;
 }.banner_bg{

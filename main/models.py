@@ -1,4 +1,3 @@
-from django.urls import reverse
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
@@ -15,8 +14,8 @@ class Events(models.Model):
     tag = models.CharField(max_length=225, verbose_name='Тег')
 
     class Meta:
-        verbose_name = 'Контент: Событие'
-        verbose_name_plural = 'Контент: События'
+        verbose_name = 'Контент: Новости'
+        verbose_name_plural = 'Контент: Новости'
 
 
 class Service(models.Model):
@@ -25,8 +24,8 @@ class Service(models.Model):
     svg_icon = models.TextField(help_text="Вставте SVG код")
 
     class Meta:
-        verbose_name = 'Контент: Услуга'
-        verbose_name_plural = 'Контент: Услуги'
+        verbose_name = 'Контент: Возможности'
+        verbose_name_plural = 'Контент: Возможности'
 
 
 class MapPoint(models.Model):

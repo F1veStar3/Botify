@@ -8,8 +8,8 @@
         function init() {
             console.log("Yandex Maps ready");
             var myMap = new ymaps.Map("map", {
-                center: [55.751574, 37.573856],
-                zoom: 10
+                center: [40.1811100, 44.5136100],
+                zoom: 12
             });
 
             console.log("Map initialized");

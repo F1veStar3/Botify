@@ -2,6 +2,11 @@
   .container {
     max-width: 1200px;
   }
+
+
+  .mobile-break-m {
+        display: none;
+  }
 }
 
 @media only screen and (max-width:991px){
@@ -27,6 +32,11 @@
 		margin-left: 0 !important;
 		margin-top: 30px;
 	}
+
+
+    .mobile-break-m {
+        display: inline;
+    }
 }
 
 @media only screen and (max-width: 767px) { 

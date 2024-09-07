@@ -8,23 +8,47 @@
 {# cache 900 "about_page_content" #}
 
 
+{% include 'includes/counter.html' %}
+
+{% include 'includes/overview.html' %}
+
+
+<section id="testimonial_area" class="section_padding pb_70">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-center">
+                    <h2 style="color: white;">Отзывы</h2>
+                </div>
+                <div class="testmonial_slider_area text-center owl-carousel">
+                    {% for review in reviews %}
+                    <div class="single_testimonial">
+                        <h5 class="testimonial-title">{{ review.name }}</h5>
+                        <span class="test_designation">{{ review.subject }}</span>
+                        <p class="description">
+                            {{ review.message }}
+                        </p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 <section class="section_padding">
     <div class="container">
         <div class="section_heading text-center">
             <strong>навигация</strong>
             <h2>КАРТА</h2>
-            <p>Здесь вы можете увидеть наше местоположение и получить информацию о том, как нас найти. Мы находимся в удобном месте, и вы легко сможете нас найти с помощью карты ниже.</p>
+            <p>Здесь вы можете увидеть наше местоположение и получить информацию о том, как нас найти. Мы находимся в
+                удобном месте, и вы легко сможете нас найти с помощью карты ниже.</p>
             <div class="sm_border"></div>
-        </div>
-        <div id="map-container">
-            <div id="map"></div>
         </div>
     </div>
 </section>
 
-{% include 'includes/counter.html' %}
-
-{% include 'includes/overview.html' %}
 
 {# endcache #}
 {% endblock content %}

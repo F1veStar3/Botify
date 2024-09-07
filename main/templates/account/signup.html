@@ -11,13 +11,27 @@
         <div class="section_heading text-center">
             <strong>аутентификация</strong>
             <h2>Регистрация</h2>
-            <p>Создайте новую учетную запись, чтобы получить доступ к эксклюзивным функциям и возможностям. Просто заполните форму ниже и следуйте инструкциям.</p>
+            <p>Создайте новую учетную запись, чтобы получить доступ к эксклюзивным функциям и возможностям. Просто
+                заполните форму ниже и следуйте инструкциям.</p>
             <div class="sm_border"></div>
         </div>
         <form id="contact-form" method="post" action="{% url 'account_signup' %}">
             {% csrf_token %}
             <div class="row">
                 <div class="input_padding text-center">
+                    {% if form.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {% for field in form %}
+                        {% for error in field.errors %}
+                        <p>{{ error }}</p>
+                        {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                        <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
                     <div class="form-group col-sm-12">
                         <input type="text" name="username" class="form-control" id="username"
                                placeholder="{% trans 'Имя пользователя' %} *"

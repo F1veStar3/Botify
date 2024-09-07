@@ -1,45 +1,42 @@
-<section id="counter_area" class="section_padding rs_pb_70">
-    <div class="container">
-        <div class="row text-center">
-            <div class="col-md-3 col-sm-6 col-xs-12">
-                <div class="single_counter">
-                    <div class="icon">
-                        <i class="icon-happy"></i>
+<section class="section_padding">
+    <div class="section_heading text-center">
+        <strong>информация</strong>
+        <h2>Ивестировано в проект</h2>
+    </div>
+    <section id="counter_area" class="section_padding rs_pb_70">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class=" col-md-4 col-sm-6">
+                    <div class="single_counter">
+                        <div class="icon">
+                            <i class="icon-happy"></i>
+                        </div>
+                        <span class="counter">{{ transaction_count }}</span>
+                        <h5>Совершено транзакций</h5>
                     </div>
-                    <span class="counter">{{ transaction_count }}</span>
-                    <h5>Совершено транзакций</h5>
                 </div>
-            </div>
 
-            <div class="col-md-3 col-sm-6 col-xs-12">
-                <div class="single_counter border_left">
-                    <div class="icon">
-                        <i class="icon-briefcase"></i>
+                <div class=" col-md-4 col-sm-6">
+                    <div class="single_counter border_left">
+                        <div class="icon">
+                            <i class="icon-briefcase"></i>
+                        </div>
+                        <span class="counter">{{ stock.total_quantity }}</span>
+                        <h5>Общая сумма инвестиций</h5>
                     </div>
-                    <span class="counter">{{ stock.total_quantity }}</span>
-                    <h5>Общая сумма инвестиций</h5>
                 </div>
-            </div>
 
-<!--            <div class="col-md-3 col-sm-6 col-xs-12">-->
-<!--                <div class="single_counter border_left res_border_none">-->
-<!--                    <div class="icon">-->
-<!--                        <i class="icon-trophy"></i>-->
-<!--                    </div>-->
-<!--                    <span class="counter">{{ stock.remaining_quantity }}</span>-->
-<!--                    <h5>Осталось</h5>-->
-<!--                </div>-->
-<!--            </div>-->
-
-            <div class="col-md-3 col-sm-6 col-xs-12">
-                <div class="single_counter border_left">
-                    <div class="icon">
-                        <i class="icon-profile-male"></i>
+                <div class=" col-md-4 col-sm-6">
+                    <div class="single_counter border_left">
+                        <div class="icon">
+                            <i class="icon-profile-male"></i>
+                        </div>
+                        <span class="counter">{{ user_count }}</span>
+                        <h5>Клиентов</h5>
                     </div>
-                    <span class="counter">{{user_count}}</span>
-                    <h5>Клиентов</h5>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+
 </section>

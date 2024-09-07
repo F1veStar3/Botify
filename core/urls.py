@@ -33,8 +33,8 @@ urlpatterns = [
     path('robots.txt/', TemplateView.as_view(template_name="robots.txt", content_type="text/plain")),
 
     path('', include('main.urls')),
-    path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
-    path('admin_secret/', admin.site.urls),
+    path('admin_1/', include('admin_honeypot.urls', namespace='admin_honeypot')),
+    path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('__debug__/', include(debug_toolbar.urls)),
 ]

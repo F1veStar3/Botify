@@ -10,7 +10,7 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li><a style="color:black;" href="{% url 'base' %}">Главная</a></li>
-                <li><a style="color:black;" href="{% url 'about' %}">О нас</a></li>
+                <li><a style="color:black;" href="{% url 'about' %}">Информация для инвесторов</a></li>
 
                 {% if request.user.is_authenticated %}
                 <li><a style="color:black;"  href="{% url 'profile' %}">Профиль</a></li>
