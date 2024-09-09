@@ -35,7 +35,23 @@
 ---------------------------------------------------------------- */
 
 
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
 
+    .footer {
+        margin-top: auto;
+
+    }
+
+    .footer-fixed .footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+    }
 
 
 
@@ -396,7 +412,7 @@ a:hover{
      [ 04 Start Banner ]
 -----------------------------------------------------------------*/
 .main_banner{
-	height: 750px;
+	height: 650px;
 	background-size: cover;
 	background-repeat: no-repeat;
 }.banner_bg{

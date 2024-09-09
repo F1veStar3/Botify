@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Profile, Review, Notification
+from .models import Profile, Review, Notification,Massage
 
 
 class NotificationForm(forms.ModelForm):
@@ -9,10 +9,16 @@ class NotificationForm(forms.ModelForm):
         fields = ['title', 'message']
 
 
+class MassageForm(forms.ModelForm):
+    class Meta:
+        model = Massage
+        fields = ['name', 'email', 'subject', 'message']
+
+
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
-        fields = ['name', 'email', 'subject', 'message']
+        fields = ['subject', 'message']
 
 
 class UserForm(forms.ModelForm):

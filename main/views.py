@@ -10,8 +10,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from django.core.paginator import Paginator
 
-from .forms import ProfileForm, ReviewForm, UserForm, NotificationForm
-from .models import Events, MapPoint, Notification, RefundRequest, Stock, Transaction, Review
+from .forms import ProfileForm, ReviewForm, UserForm, NotificationForm, MassageForm
+from .models import Events, MapPoint, Notification, RefundRequest, Stock, Transaction, Review, Profile
 from .mixins import CommonContextMixin
 
 import stripe
@@ -47,7 +47,7 @@ def get_common_context():
 def base(request):
     events = Events.objects.order_by('-id')[:3]
 
-    form = ReviewForm(request.POST or None)
+    form = MassageForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
         form.save()
 
@@ -74,19 +74,19 @@ def about(request):
 
 @login_required
 def profile_view(request):
+    profile = get_object_or_404(Profile, user=request.user)
+
     user = request.user
     mixin = CommonContextMixin()
     common_context = mixin.get_common_context()
     stock = common_context.get('stock')
 
-    user_transactions = Transaction.objects.filter(user=user)
-    total_quantity = user_transactions.aggregate(Sum('quantity'))['quantity__sum']
-    total_price = user_transactions.aggregate(Sum('total_price'))['total_price__sum']
-
-    transactions = user_transactions.order_by('-id')
+    transactions = Transaction.objects.filter(user=request.user).order_by('-id')
     paginator = Paginator(transactions, 10)  # 5 коментарів на сторінку
     page_number = request.GET.get('page', 1)
     t_page_obj = paginator.get_page(page_number)
+
+    refund_requests = RefundRequest.objects.filter(user=request.user).values_list('transaction_id', flat=True)
 
     notifications = Notification.objects.filter(user=user).order_by('-id')
     paginator = Paginator(notifications, 3)
@@ -95,6 +95,7 @@ def profile_view(request):
 
     user_form = UserForm(instance=user)
     profile_form = ProfileForm(instance=request.user.profile)
+    review_form = ReviewForm()
 
     if request.method == 'POST':
 
@@ -103,6 +104,21 @@ def profile_view(request):
             if user_form.is_valid():
                 user_form.save()
                 return redirect('profile')
+
+        elif 'review' in request.POST:
+            review_form = ReviewForm(request.POST)
+            if review_form.is_valid():
+                review = review_form.save(commit=False)
+                review.user = request.user
+                review.save()
+                notification = Notification.objects.create(
+                    user=user,
+                    title="Отзыв успешно отправлен",
+                    message="Ваш отзыв был успешно отправлен. Спасибо за ваш вклад!"
+                )
+                return redirect('profile')
+
+
         elif 'pay_form' in request.POST:
             quantity = int(request.POST.get('quantity'))
             total_price = quantity * stock.price_per_unit
@@ -130,7 +146,6 @@ def profile_view(request):
                     'user_id': request.user.id,
                 }
             )
-
             return redirect(session.url, code=303)
         else:
             profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
@@ -142,12 +157,14 @@ def profile_view(request):
         'stock': stock,
         'user_form': user_form,
         'profile_form': profile_form,
-        'total_quantity': total_quantity,
-        'total_price': total_price,
-        'user_transactions': user_transactions,
+        'review_form': review_form,
+        'transactions': transactions,
+        'refund_requests': refund_requests,
 
         't_page_obj': t_page_obj,
         'n_page_obj': n_page_obj,
+
+        'profile': profile,
     }
 
     if request.htmx:
@@ -207,9 +224,6 @@ def stripe_webhook(request):
             title="Оплата прошла успешно",
             message=f"Ваша оплата на сумму {total_price}$ была успешно завершена. Спасибо за покупку!"
         )
-
-        stock.remaining_quantity -= int(quantity)
-        stock.save()
 
     return JsonResponse({'status': 'success'}, status=200)
 

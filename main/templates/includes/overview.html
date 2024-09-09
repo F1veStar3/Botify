@@ -1,7 +1,12 @@
 <style>
     .icon svg {
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
+    }
+
+    .res {
+        min-height: 600px; /* Мінімальна висота картки */
+        max-height: 600px;
     }
 </style>
 
@@ -19,17 +24,20 @@
             </div>
         </div>
 
-        <div class="row text-center">
+
+        <div class="row">
             {% for service in services %}
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="single-service">
-                    <i>
-                        <div class="icon">
-                            {{ service.svg_icon|safe }}
-                        </div>
-                    </i>
-                    <h4>{{ service.title }}</h4>
-                    <p>{{ service.description }}</p>
+            <div class="col-md-4">
+                <div class="single-service res">
+                    <div class="text-center">
+                        <i>
+                            <div class="icon">
+                                {{ service.svg_icon|safe }}
+                            </div>
+                        </i>
+                        <h4>{{ service.title }}</h4>
+                    </div>
+                    <p>{{ service.description|truncatechars:400 }}</p>
                 </div>
             </div> <!-- End Col -->
             {% endfor %}

@@ -59,6 +59,7 @@
 		/* END LIGHTBOX JS */
 		
 		/* START COUNDOWN JS */
+
 $('#counter_area').on('inview', function(event, visible, visiblePartX, visiblePartY) {
     if (visible) {
         $(this).find('.counter').each(function () {
@@ -68,13 +69,14 @@ $('#counter_area').on('inview', function(event, visible, visiblePartX, visiblePa
                 duration: 5000,
                 easing: 'swing',
                 step: function (now) {
-                    $this.text(Math.floor(now).toLocaleString('en-US')); // Відображення без десяткових знаків
+                    $this.text(Math.floor(now)); // Відображення без десяткових знаків і без коми
                 }
             });
         });
         $(this).unbind('inview');
     }
 });
+
 		/* END COUNDOWN JS */
 		
 		/* START TESTIMONIAL JS */

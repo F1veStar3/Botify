@@ -9,7 +9,10 @@ class CommonContextMixin:
         services = Service.objects.all()
         stock = get_object_or_404(Stock, id=1)
 
+        invested = stock.total_quantity - stock.remaining_quantity
+
         return {
+            'invested':invested,
             'transaction_count': transaction_count,
             'user_count': user_count,
             'stock': stock,

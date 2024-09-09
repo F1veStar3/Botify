@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.dispatch import receiver
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
 
 
 class Events(models.Model):
@@ -12,6 +12,7 @@ class Events(models.Model):
                             upload_to="events_imgs/")
     date = models.DateTimeField(default=timezone.now, verbose_name='Дата')
     tag = models.CharField(max_length=225, verbose_name='Тег')
+    url = models.URLField(max_length=200, verbose_name='Ссылка', blank=True, null=True)  # Нове поле для посилання
 
     class Meta:
         verbose_name = 'Контент: Новости'
@@ -42,6 +43,9 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='Пользователь')
     logo = models.ImageField(upload_to='logos/', blank=True, verbose_name='Логотип')
 
+    balance = models.DecimalField(max_digits=15, decimal_places=0, default=0, verbose_name='Баланс')
+    total_spent = models.DecimalField(max_digits=15, decimal_places=0, default=0, verbose_name='На общую сумму')
+
     def get_logo(self):
         if self.logo:
             return self.logo.url
@@ -68,6 +72,7 @@ class Stock(models.Model):
     price_per_unit = models.DecimalField(max_digits=15, decimal_places=2, verbose_name='Цена за единицу')
     total_quantity = models.PositiveIntegerField(verbose_name='Общее количество')
     minimum_purchase_quantity = models.PositiveIntegerField(verbose_name='Минимальное количество для покупки')
+
     remaining_quantity = models.PositiveIntegerField(verbose_name='Оставшееся количество')
 
     class Meta:
@@ -76,8 +81,6 @@ class Stock(models.Model):
 
 
 class Transaction(models.Model):
-
-
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь')
     stock = models.ForeignKey(Stock, on_delete=models.CASCADE, verbose_name='Акция')
     quantity = models.PositiveIntegerField(verbose_name='Количество')
@@ -88,6 +91,35 @@ class Transaction(models.Model):
     class Meta:
         verbose_name = 'Оплата: Транзакция'
         verbose_name_plural = 'Оплата: Транзакции'
+
+
+@receiver(post_delete, sender=Transaction)
+def update_stock_on_transaction_delete(sender, instance, **kwargs):
+    stock = instance.stock
+    stock.remaining_quantity = stock.total_quantity - Transaction.objects.filter(stock=stock).aggregate(models.Sum('quantity'))['quantity__sum'] or 0
+    stock.save()
+
+@receiver(post_save, sender=Transaction)
+def update_stock_on_transaction_save(sender, instance, **kwargs):
+    stock = instance.stock
+    stock.remaining_quantity = stock.total_quantity - Transaction.objects.filter(stock=stock).aggregate(models.Sum('quantity'))['quantity__sum'] or 0
+    stock.save()
+
+
+@receiver(post_save, sender=Transaction)
+def update_profile_on_transaction_save(sender, instance, **kwargs):
+    profile, created = Profile.objects.get_or_create(user=instance.user)
+    profile.total_spent = Transaction.objects.filter(user=instance.user).aggregate(total_spent=models.Sum('total_price'))['total_spent'] or 0
+    profile.balance += instance.quantity
+    profile.save()
+
+
+@receiver(post_delete, sender=Transaction)
+def update_profile_on_transaction_delete(sender, instance, **kwargs):
+    profile, created = Profile.objects.get_or_create(user=instance.user)
+    profile.total_spent = Transaction.objects.filter(user=instance.user).aggregate(total_spent=models.Sum('total_price'))['total_spent'] or 0
+    profile.balance -= instance.quantity
+    profile.save()
 
 
 class RefundRequest(models.Model):
@@ -111,11 +143,22 @@ class Notification(models.Model):
         verbose_name_plural = ' Коммуникация: Уведомления'
 
 
-class Review(models.Model):
+class Massage(models.Model):
     name = models.CharField(max_length=225, verbose_name='Имя')
     email = models.EmailField(verbose_name='Электронная почта')
     subject = models.CharField(max_length=225, verbose_name='Тема')
-    message = models.TextField(verbose_name='Сообщение')
+    message = models.TextField(verbose_name='Сообщение', max_length=2000)
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
+
+    class Meta:
+        verbose_name = 'Коммуникация: Вопросы'
+        verbose_name_plural = 'Коммуникация: Вопросы'
+
+
+class Review(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь')
+    subject = models.CharField(max_length=225, verbose_name='Тема')
+    message = models.TextField(verbose_name='Сообщение', max_length=2000)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
 
     class Meta:

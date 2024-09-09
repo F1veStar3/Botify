@@ -7,11 +7,17 @@
 {# cache 900 "index_page_content" #}
 
 
+<style>
+.res-1 {
+    min-height: 500px; /* Мінімальна висота картки */
+    max-height: 500px;
+}
+</style>
 <section id="home" class="main_banner banner_bg ripple-effect jquery-ripples">
     <div class="container">
         <div class="row">
             <div class="col-md-7 col-sm-12 col-xs-12">
-                <div class="banner_content">
+                <div class="banner_content" style="margin-top: 150px;">
                     <strong>🤖 Привет !</strong>
                     <h1 style='font-size: 40px;' class="cd-headline clip">
                         <span class="fw_600">Я твой умный помощник для</span><br>
@@ -19,8 +25,10 @@
                             <b class="is-visible fw_300">создания <br class="mobile-break-m"> изображений </b>
                             <b class="fw_300">изменения <br class="mobile-break-m"> изображений </b>
                             <b class="fw_300">анимирования <br class="mobile-break-m"> изображений</b>
+                            <b class="fw_300">творчества</b>
+                            <b class="fw_300">создания <br class="mobile-break-m"> музыкальных<br
+                                    class="mobile-break-m"> произведений</b>
                         </span>
-                        <!--                        <span class="fw_600"></span>-->
                     </h1>
                     <p>Если вы хотите поддержать проект, вы можете стать инвестором. Вся информация находится в личном
                         профиле.</p>
@@ -37,46 +45,60 @@
         </div>
     </div>
 </section>
-<!-- START ABOUT -->
-<section class="section_padding_desc">
+
+
+<section id="service" class="section_padding pb_70">
     <div class="container">
-        <div class="single_about">
-            <div class="about_content_area">
-                <h4>Описание</h4>
-                <h3>Вот что я умею:</h3>
-                <p>
-                    - Создавать картинки по вашему запросу 🩵<br>
-                    - Изменять ваши фото и картинки 💚<br>
-                    - Создавать музыкальные произведения 🎧<br>
-                    - Анимировать любые изображения 🤯<br>
-                    - Улучшать качество изображений 🔮<br>
-                </p>
-                <!--                <div class="about_details">-->
-                <!--                    <div class="і">-->
-                <!--                        <span><i class="fa fa-whatsapp"></i> What'sUp </span>-->
-                <!--                        <a target='_blank' href="https://wa.me/37259208680">-->
-                <!--                            +37259208680-->
-                <!--                        </a>-->
-                <!--                    </div>-->
-                <!--                    <div class="ct_about">-->
-                <!--                        <span><i class="fa fa-envelope"></i> Email </span>-->
-                <!--                        <a target='_blank'-->
-                <!--                           href="https://mail.google.com/mail/u/0/?fs=1&to=avroraai.bot@gmail.com&su=&body=&tf=cm">-->
-                <!--                            avroraai.bot@gmail.com-->
-                <!--                        </a>-->
-                <!--                    </div>-->
-                <!--                </div>-->
+        <div class="col-md-12 col-sm-12-col-xs-12">
+            <div class="section_heading text-center">
+                <strong>Информация</strong>
+                <h2>Описание</h2>
+                <p>Наш бот для Telegram предлагает широкий спектр возможностей для работы с изображениями. Мы
+                    предоставляем инструменты для создания уникальных изображений, их модификации и анимации. Наши
+                    функции включают в себя настройку графических элементов, применение эффектов и анимаций, а также
+                    интеграцию с вашими проектами для повышения их визуальной привлекательности.</p>
+                <div class="sm_border"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="single-service res-1">
+                    <div class="text-center">
+                        <h4>Аврора: Нейросеть для креативных задач</h4>
+                    </div>
+                    <p>Аврора — это мощная специализированная нейросеть, предназначенная для работы с визуальным и аудио
+                        контентом. Объединяя передовые алгоритмы искусственного интеллекта, Аврора предлагает
+                        пользователям уникальные возможности для создания, обработки и улучшения изображений и
+                        музыкальных треков. Эта универсальная платформа идеально подходит как для профессионалов в
+                        области графики и музыки, так и для любителей, желающих расширить свои творческие горизонты.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="single-service res-1">
+                    <div class="text-center">
+                        <h4>Примеры использования Авроры</h4>
+                    </div>
+                    <p>Креативные проекты: Художники и дизайнеры могут использовать Аврору для создания визуального
+                        контента, стилизуя и анимируя изображения, а также для создания музыки для своих проектов.<br>Социальные
+                        медиа: Пользователи могут генерировать уникальные изображения и анимации для публикаций,
+                        привлекая внимание к своему контенту и увеличивая вовлеченность.<br>Образование: Учебные
+                        материалы могут быть насыщены анимацией и музыкальным сопровождением, что повысит интерес
+                        учащихся и улучшит усвоение информации.<br>Маркетинг и реклама: Создание качественного
+                        визуального и аудиоконтента для рекламных кампаний, позволяя компаниям выделиться на фоне
+                        конкурентов и захватить внимание своей аудитории.</p>
+                </div>
             </div>
         </div>
     </div>
-    </div>
 </section>
+
 
 <!-- END ABOUT -->
 
 
 {% include 'includes/overview.html' %}
-
 
 {% include 'includes/counter.html' %}
 
@@ -106,7 +128,11 @@
                                 <small><i class="fa fa-clock-o"></i>{{ event.date|date:"F d, Y" }}</small>
                                 <span>| {{ event.tag }}</span>
                                 <h4>{{ event.name }}</h4>
-                                <p>{{ event.description|truncatewords:20 }}</p>
+                                <p>{{ event.description }}</p>
+                                {% if event.url %}
+                                <a href="{{ event.url }}" class="btn btn-default blog_btn main_btn" target="_blank">читать
+                                    далее</a>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -136,45 +162,42 @@
 
         <div class="row">
             <div class="col-md-7 col-sm-12">
+
                 <form id="contact-form" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="row">
                         <div class="input_padding text-center">
                             <div class="form-group col-sm-12">
-                                <input type="text" name="name" class="form-control" id="first-name"
-                                       placeholder="Имя *"
+                                <input type="text" name="name" class="form-control" id="first-name" placeholder="Имя *"
                                        required="required">
                             </div>
                             <div class="form-group col-sm-6">
                                 <input type="email" name="email" class="form-control" id="email"
-                                       placeholder="Электронная почта *"
-                                       required="required">
+                                       placeholder="Электронная почта *" required="required">
                             </div>
                             <div class="form-group col-sm-6">
-                                <input type="text" name="subject" class="form-control" id="subject"
-                                       placeholder="Тема *"
+                                <input type="text" name="subject" class="form-control" id="subject" placeholder="Тема *"
                                        required="required">
                             </div>
                             <div class="form-group col-sm-12 mab-none">
-                <textarea rows="8" name="message" class="form-control" id="description"
-                          placeholder="Ваше сообщение здесь ..."
-                          required="required"></textarea>
+                                <textarea rows="8" name="message" class="form-control" id="description"
+                                          placeholder="Ваше сообщение здесь ..." required="required"></textarea>
                             </div>
                             <div class="form-group mb0 col-sm-12">
                                 <div class="actions">
                                     <button type="submit" value="Отправить сообщение" name="submit"
-                                            class="btn btn-lg main_btn btn_shadow"
-                                            title="Отправить ваше сообщение!">
-                                        Оставить отзыв
+                                            class="btn btn-lg main_btn btn_shadow" title="Отправить ваше сообщение!">
+                                        Отправить
                                     </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </form>
-
+                <div id="success-message" style="display: none; color: green; text-align: center; margin-top: 20px;">
+                    Ваше сообщение успешно отправлено!
+                </div>
             </div>
-
             <div class="col-md-5 col-sm-12">
                 <div class="contact_widget_area">
                     <div class="contact_info">
@@ -202,6 +225,38 @@
         </div>
     </div>
 </section>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#contact-form').on('submit', function (e) {
+            e.preventDefault();
+
+            var formData = new FormData(this);
+
+            $.ajax({
+                type: 'POST',
+                url: "{% url 'base' %}",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+
+                    $('#contact-form')[0].reset();
+                    $('#success-message').fadeIn();
+                    setTimeout(function () {
+                        $('#success-message').fadeOut();
+                    }, 5000);
+                },
+                error: function (xhr, status, error) {
+                    alert("Произошла ошибка. Попытайтесь еще раз.");
+                }
+            });
+        });
+    });
+</script>
+
 <!-- END CONTACT -->
 {# endcache #}
 {% endblock content %}

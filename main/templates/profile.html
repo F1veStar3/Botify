@@ -46,6 +46,7 @@
 </section>
 {% endif %}
 
+
 <section id="counter_area" class="section_padding rs_pb_70">
     <div class="container">
         <div class="row text-center">
@@ -54,7 +55,7 @@
                     <div class="icon">
                         <i class="icon-happy"></i>
                     </div>
-                    <span class="counter">{{ user_transactions.count }}</span>
+                    <span class="counter">{{ transactions.count }}</span>
                     <h5>Совершено транзакций</h5>
                 </div>
             </div>
@@ -64,7 +65,7 @@
                     <div class="icon">
                         <i class="icon-briefcase"></i>
                     </div>
-                    <span class="counter">{% if total_quantity %}{{ total_quantity }}{% else %}0{% endif %}</span>
+                    <span class="counter">{{ profile.balance }}</span>
                     <h5>На вашем счету</h5>
                 </div>
             </div>
@@ -74,9 +75,7 @@
                     <div class="icon">
                         <i class="icon-trophy"></i>
                     </div>
-
-                    <span class="counter">{% if total_price %}{{ total_price }}{% else %}0{% endif %}</span>
-
+                    <span class="counter">{{ profile.total_spent }}</span>
                     <h5>На общую сумму</h5>
                 </div>
             </div>
@@ -169,8 +168,41 @@
     </div>
 </section>
 
-
 <section class="section_padding pb_70">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="section_heading text-center">
+                    <strong>Оставить отзыв</strong>
+                    <h2>Поделитесь своим мнением</h2>
+                    <p>Мы ценим ваши отзывы. Пожалуйста, оставьте свой отзыв, чтобы помочь нам улучшить качество наших
+                        услуг.</p>
+                    <div class="sm_border"></div>
+                </div>
+            </div>
+
+            <form id="contact-form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group col-sm-12">
+                    <input type="text" name="subject" class="form-control" id="subject"
+                           placeholder="Тема отзыва *" required="required">
+                </div>
+                <div class="form-group col-sm-12">
+        <textarea name="message" class="form-control" id="message"
+                  placeholder="Ваш отзыв *" rows="6" required="required"></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="submit" value="Send review" name="review"
+                            class="btn btn-lg main_btn btn_shadow">Отправить отзыв
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</section>
+
+<section class="section_padding pb_70" style="background: #fafafa;">
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-sm-12-col-xs-12">
