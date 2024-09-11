@@ -13,6 +13,8 @@
 </div>
 {% include 'includes/overview.html' %}
 
+
+{% if reviews %}
 <section id="testimonial_area" class="section_padding pb_70">
     <div class="container">
         <div class="row">
@@ -21,7 +23,7 @@
                     {% for review in reviews %}
                     <div class="single_testimonial">
                         <div class="pic">
-                            <img src="{{ review.user.profile.get_logo }}" alt="Default Image">
+                            <img src="{{ review.user.profile.get_logo }}"  alt="Default Image">
                         </div>
                         <h5 class="testimonial-title">{{ review.name }}</h5>
                         <span class="test_designation">{{ review.subject }}</span>
@@ -35,6 +37,7 @@
         </div>
     </div>
 </section>
+{% endif %}
 
 <section class="section_padding">
     <div class="container">

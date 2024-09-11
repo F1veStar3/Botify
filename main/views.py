@@ -16,7 +16,7 @@ from .mixins import CommonContextMixin
 
 import stripe
 
-stripe.api_key = settings.STRIPE_SECRET_KEY
+stripe.api_key = settings.STRIPE_TEST_SECRET_KEY
 
 
 @user_passes_test(lambda u: u.is_superuser)
@@ -117,8 +117,6 @@ def profile_view(request):
                     message="Ваш отзыв был успешно отправлен. Спасибо за ваш вклад!"
                 )
                 return redirect('profile')
-
-
         elif 'pay_form' in request.POST:
             quantity = int(request.POST.get('quantity'))
             total_price = quantity * stock.price_per_unit
@@ -177,12 +175,12 @@ def profile_view(request):
 
 
 def payment_successful(request):
-    stripe.api_key = settings.STRIPE_SECRET_KEY
+    stripe.api_key = settings.STRIPE_TEST_SECRET_KEY
     return render(request, 'payment_successful.html')
 
 
 def payment_cancelled(request):
-    stripe.api_key = settings.STRIPE_SECRET_KEY
+    stripe.api_key = settings.STRIPE_TEST_SECRET_KEY
     return render(request, 'payment_cancelled.html')
 
 
@@ -209,7 +207,7 @@ def stripe_webhook(request):
         total_price = session['metadata']['total_price']
 
         user = User.objects.get(id=user_id)
-        stock = Stock.objects.get(id=1)  # Отримуємо об'єкт складу за ID
+        stock = Stock.objects.get(id=1)
 
         transaction = Transaction.objects.create(
             user=user,

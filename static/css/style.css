@@ -1038,9 +1038,10 @@ svg {
 	z-index: 1;
 }
 .single_testimonial .pic img{
-    width: 100%;
-    height: auto;
-	border-radius: 50%;
+        border-radius: 50%;
+        width: 70px; /* Ширина */
+        height: 70px; /* Висота */
+        object-fit: cover;
 }
 #testimonial_area .owl-nav{
 	position: absolute;

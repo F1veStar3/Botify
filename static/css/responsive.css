@@ -4,6 +4,16 @@
   }
 
 
+
+  .res {
+        min-height: 600px; /* Мінімальна висота картки */
+        max-height: 600px;
+    }
+  .res-1 {
+        min-height: 530px; /* Мінімальна висота картки */
+        max-height: 530px;
+    }
+
   .mobile-break-m {
         display: none;
   }

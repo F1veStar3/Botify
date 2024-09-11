@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Sum
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.dispatch import receiver
@@ -45,6 +46,12 @@ class Profile(models.Model):
 
     balance = models.DecimalField(max_digits=15, decimal_places=0, default=0, verbose_name='Баланс')
     total_spent = models.DecimalField(max_digits=15, decimal_places=0, default=0, verbose_name='На общую сумму')
+
+    def update_balance_and_spent(self):
+        transactions = Transaction.objects.filter(user=self.user)
+        self.balance = transactions.aggregate(total_quantity=Sum('quantity'))['total_quantity'] or 0
+        self.total_spent = transactions.aggregate(total_price=Sum('total_price'))['total_price'] or 0
+        self.save()
 
     def get_logo(self):
         if self.logo:
@@ -96,30 +103,28 @@ class Transaction(models.Model):
 @receiver(post_delete, sender=Transaction)
 def update_stock_on_transaction_delete(sender, instance, **kwargs):
     stock = instance.stock
-    stock.remaining_quantity = stock.total_quantity - Transaction.objects.filter(stock=stock).aggregate(models.Sum('quantity'))['quantity__sum'] or 0
+    total_quantity = stock.total_quantity or 0
+    sum_quantity = Transaction.objects.filter(stock=stock).aggregate(
+        models.Sum('quantity'))['quantity__sum'] or 0
+    stock.remaining_quantity = total_quantity - sum_quantity
     stock.save()
+
 
 @receiver(post_save, sender=Transaction)
 def update_stock_on_transaction_save(sender, instance, **kwargs):
     stock = instance.stock
-    stock.remaining_quantity = stock.total_quantity - Transaction.objects.filter(stock=stock).aggregate(models.Sum('quantity'))['quantity__sum'] or 0
+    total_quantity = stock.total_quantity or 0
+    sum_quantity = Transaction.objects.filter(stock=stock).aggregate(
+        models.Sum('quantity'))['quantity__sum'] or 0
+    stock.remaining_quantity = total_quantity - sum_quantity
     stock.save()
 
 
 @receiver(post_save, sender=Transaction)
-def update_profile_on_transaction_save(sender, instance, **kwargs):
-    profile, created = Profile.objects.get_or_create(user=instance.user)
-    profile.total_spent = Transaction.objects.filter(user=instance.user).aggregate(total_spent=models.Sum('total_price'))['total_spent'] or 0
-    profile.balance += instance.quantity
-    profile.save()
-
-
 @receiver(post_delete, sender=Transaction)
-def update_profile_on_transaction_delete(sender, instance, **kwargs):
-    profile, created = Profile.objects.get_or_create(user=instance.user)
-    profile.total_spent = Transaction.objects.filter(user=instance.user).aggregate(total_spent=models.Sum('total_price'))['total_spent'] or 0
-    profile.balance -= instance.quantity
-    profile.save()
+def update_profile_on_transaction_change(sender, instance, **kwargs):
+    profile = Profile.objects.get(user=instance.user)
+    profile.update_balance_and_spent()
 
 
 class RefundRequest(models.Model):
