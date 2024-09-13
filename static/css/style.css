@@ -35,6 +35,15 @@
 ---------------------------------------------------------------- */
 
 
+
+    .media-item {
+        max-width: 100%;
+    }
+    .height {
+        height: 640px;
+    }
+
+
     body {
         display: flex;
         flex-direction: column;
@@ -411,11 +420,9 @@ a:hover{
 /* ----------------------------------------------------------------
      [ 04 Start Banner ]
 -----------------------------------------------------------------*/
-.main_banner{
-	height: 650px;
-	background-size: cover;
-	background-repeat: no-repeat;
-}.banner_bg{
+
+
+.banner_bg{
 	background-image: url(../images/banner.jpg);
 	background-size: cover;
 	background-position: center center;
@@ -723,14 +730,17 @@ svg {
     text-transform: capitalize;
     color: #222;
     font-weight: 500;
-	transition: all 0.4s ease;
 }
-.single-service:hover h4{
-    color: #1461ff;
+
+
+
+
+.shadow-box {
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2); /* Широка та м'яка тінь */
+    border-radius: 0px; /* Можна додати округлені краї, якщо потрібно */
+    background: white; /* Задаємо фон для виділення тіні */
 }
-.single-service p{
-	margin-top: 15px;
-}
+
 /* ----------------------------------------------------------------
     [ End Service ]
 -----------------------------------------------------------------*/

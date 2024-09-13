@@ -13,7 +13,7 @@ class Events(models.Model):
                             upload_to="events_imgs/")
     date = models.DateTimeField(default=timezone.now, verbose_name='Дата')
     tag = models.CharField(max_length=225, verbose_name='Тег')
-    url = models.URLField(max_length=200, verbose_name='Ссылка', blank=True, null=True)  # Нове поле для посилання
+    url = models.URLField(max_length=200, verbose_name='Ссылка', blank=True, null=True)
 
     class Meta:
         verbose_name = 'Контент: Новости'
@@ -24,6 +24,7 @@ class Service(models.Model):
     title = models.CharField(max_length=225)
     description = models.TextField(max_length=2000)
     svg_icon = models.TextField(help_text="Вставте SVG код")
+    url = models.URLField(max_length=200, verbose_name='Ссылка', blank=True, null=True)
 
     class Meta:
         verbose_name = 'Контент: Возможности'
@@ -56,7 +57,7 @@ class Profile(models.Model):
     def get_logo(self):
         if self.logo:
             return self.logo.url
-        return '/media/logos/anonim.png'
+        return '/media/logos/user.png'
 
     class Meta:
         verbose_name = 'Мониторинг: Профиль'

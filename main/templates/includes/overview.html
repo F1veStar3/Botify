@@ -1,10 +1,46 @@
 <style>
+
     .icon svg {
-        width: 80px;
-        height: 80px;
+    width: 80px;
+    height: 80px;
+}
+/* Сховати опис і кнопку спочатку */
+.card-description, .card-button {
+    display: none;
+}
+
+/* Показати опис і кнопку при наведенні */
+.card:hover .card-description, .card:hover .card-button {
+    display: block;
+}
+
+/* Сховати іконку та назву при наведенні */
+.card:hover .icon, .card:hover .card-title {
+    display: none;
+}
+
+.card-description {
+        margin-top: 10px;
     }
 
+    /* Кнопка внизу та справа картки */
+    .card {
+        position: relative;
+    }
+    .card-button {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+    }
+
+.custom-margin {
+    margin-top: 90px; /* або інше значення */
+}
 </style>
+
+
+<!-- Логіка для відображення опису при наведенні -->
+
 
 <section id="service" class="gray_bg section_padding pb_70">
     <div class="container">
@@ -12,34 +48,40 @@
             <div class="section_heading text-center">
                 <strong>информация</strong>
                 <h2>Наши возможности</h2>
-                <p>Наш бот для Telegram предлагает широкий спектр возможностей для работы с изображениями. Мы
-                    предоставляем инструменты для создания уникальных изображений, их модификации и анимации. Наши
-                    функции включают в себя настройку графических элементов, применение эффектов и анимаций, а также
-                    интеграцию с вашими проектами для повышения их визуальной привлекательности.</p>
+                <p>Наш <a target='_blank' href="https://t.me/generate_images_bot">Telegram-бот</a> предлагает широкий
+                    спектр возможностей по созданию музыкальных произведений, видео,
+                    а также работы с изображениями (создание, анимирование, изменение и другое). Наши функции включают в
+                    себя настройку графических элементов, применение эффектов и анимаций, а также интеграцию с вашими
+                    проектами для повышения их визуальной привлекательности.</p>
                 <div class="sm_border"></div>
             </div>
         </div>
-
-
         <div class="row">
             {% for service in services %}
             <div class="col-md-4">
-                <div class="single-service res">
-                    <div class="text-center">
-                        <i>
-                            <div class="icon">
-                                {{ service.svg_icon|safe }}
-                            </div>
-                        </i>
-                        <h4>{{ service.title }}</h4>
+                <div class="single-service card res">
+                    <div class="card-body d-flex align-items-center">
+                        <div class="text-center">
+                            <i>
+                                <div class="icon custom-margin">
+                                    {{ service.svg_icon|safe }}
+                                </div>
+                            </i>
+                            <h4 class="card-title custom-margin">{{ service.title }}</h4>
+                        </div>
+                        <p class="card-description">{{ service.description|truncatechars:450 }}</p>
+
+                        {% if service.url %}
+                        <a href="{{ service.url }}" class="btn btn-default blog_btn main_btn card-button"
+                           target="_blank">Перейти</a>
+                        {% endif %}
+
+
                     </div>
-                    <p>{{ service.description|truncatechars:400 }}</p>
                 </div>
             </div> <!-- End Col -->
             {% endfor %}
         </div>
     </div>
 </section>
-
-
 

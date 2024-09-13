@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', env('RENDER_EXTERNAL_HOSTNAME')]
 
@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
 
     'admin_honeypot',
+    "compressor",
     "django_htmx",
     'django_cleanup.apps.CleanupConfig',
     'debug_toolbar',
@@ -142,6 +143,9 @@ STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
+COMPRESS_ROOT = "comp/"
+COMPRESS_ENABLED = True
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -151,6 +155,12 @@ CACHES = {
         'LOCATION': os.path.join(BASE_DIR, 'cache'),
     }
 }
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -164,7 +174,7 @@ INTERNAL_IPS = [
     # ...
 ]
 
-STRIPE_TEST_SECRET_KEY = env('STRIPE_TEST_SECRET_KEY')
+STRIPE_SECRET_KEY = env('STRIPE_SECRET_KEY')
 STRIPE_WEBHOOK_SECRET = env('STRIPE_WEBHOOK_SECRET')
 
 REDIRECT_DOMAIN = env('REDIRECT_DOMAIN')

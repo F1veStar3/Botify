@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load cache %}
+
+{% block title %}Информация для инвесторов{% endblock %}
+
+
+{% block content %}
+{# cache 900 "about_page_content" #}
+
+
+
+
+<section id="home" class="main_banner banner_bg ripple-effect jquery-ripples">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7 col-sm-12 col-xs-12">
+                <div class="banner_content" style="margin-top: 150px;">
+                    <strong>Инвестируй в наш продукт !</strong>
+                    <h1 class="cd-headline clip">
+                        <span class="fw_600">Присоединяйся к нашей команде для</span><br>
+                        <span class="cd-words-wrapper">
+                            <b class="is-visible fw_300">усовершенствования <br class="mobile-break-m">Авроры </b>
+                            <b class="fw_300">создания новых <br class="mobile-break-m">проектов </b>
+                            <b class="fw_300">создания <br class="mobile-break-m">нейросетей</b>
+                        </span>
+                    </h1>
+                    <p>Нейросетевые технологии уже меняют мир, и мы предлагаем вам стать частью этого будущего!</p>
+                    <br>
+                    <a arget='_blank' href="https://t.me/generate_images_bot"><strong>Перейти в нейросеть</strong></a>
+                    <ul class="banner_social_link">
+                        <li><a target='_blank' href="https://t.me/generate_images_bot"><i
+                                class="fa fa-telegram"></i></a></li>
+                        <li><a target='_blank' href="https://wa.me/37259208680"><i class="fa fa-whatsapp"></i></a></li>
+                        <li><a target='_blank'
+                               href="https://mail.google.com/mail/u/0/?fs=1&to=avroraai.bot@gmail.com&su=&body=&tf=cm"><i
+                                class="fa fa-envelope"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include 'includes/about.html' %}
+
+
+{% include 'includes/counter.html' %}
+
+
+{% include 'includes/overview.html' %}
+
+
+{% if reviews %}
+<section id="testimonial_area" class="section_padding pb_70">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="testmonial_slider_area text-center owl-carousel">
+                    {% for review in reviews %}
+                    <div class="single_testimonial">
+                        <div class="pic">
+                            <img src="{{ review.user.profile.get_logo }}"  alt="Default Image">
+                        </div>
+                        <h5 class="testimonial-title">{{ review.name }}</h5>
+                        <span class="test_designation">{{ review.subject }}</span>
+                        <p class="description">
+                            {{ review.message }}
+                        </p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+
+<section class="section_padding">
+    <div class="container">
+        <div class="section_heading text-center">
+            <strong>навигация</strong>
+            <h2>КАРТА</h2>
+            <p>Здесь вы можете увидеть наше местоположение и получить информацию о том, как нас найти. Мы находимся в
+                удобном месте, и вы легко сможете нас найти с помощью карты ниже.</p>
+            <div class="sm_border"></div>
+        </div>
+        <div id="map-container">
+            <div id="map"></div>
+        </div>
+    </div>
+</section>
+
+
+{% include 'includes/contact.html' %}
+
+
+{# endcache #}
+{% endblock content %}

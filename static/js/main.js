@@ -85,8 +85,8 @@ $('#counter_area').on('inview', function(event, visible, visiblePartX, visiblePa
 				slideSpeed:1000,
 				items : 3,
 				loop: true,
-				nav:true,
-				navText:['<i class="ti-arrow-left"></i>','<i class="ti-arrow-right"></i>'],
+//				nav:true,
+//				navText:['<i class="ti-arrow-left"></i>','<i class="ti-arrow-right"></i>'],
 				margin: 30,
 				dots: true,
 				responsive:{

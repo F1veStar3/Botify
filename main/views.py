@@ -1,6 +1,5 @@
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
-from django.db.models import Sum
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
@@ -16,7 +15,7 @@ from .mixins import CommonContextMixin
 
 import stripe
 
-stripe.api_key = settings.STRIPE_TEST_SECRET_KEY
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
 @user_passes_test(lambda u: u.is_superuser)
@@ -44,32 +43,39 @@ def get_common_context():
     return mixin.get_common_context()
 
 
-def base(request):
-    events = Events.objects.order_by('-id')[:3]
-
+def process_form(request):
     form = MassageForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
         form.save()
+    return form
+
+
+def base(request):
+    events = Events.objects.order_by('-id')[:15]
+    form = process_form(request)
 
     context = {
         'events': events,
         'form': form,
+        'page_type': 'homepage',
     }
     context.update(get_common_context())
 
     return render(request, 'index.html', context)
 
 
-def about(request):
+def info_for_investors(request):
     reviews = Review.objects.order_by('-id')[:15]
+    form = process_form(request)
 
     context = {
         'reviews': reviews,
-
+        'form': form,
+        'page_type': 'general_info',
     }
     context.update(get_common_context())
 
-    return render(request, 'about.html', context)
+    return render(request, 'info_for_investors.html', context)
 
 
 @login_required
@@ -175,12 +181,12 @@ def profile_view(request):
 
 
 def payment_successful(request):
-    stripe.api_key = settings.STRIPE_TEST_SECRET_KEY
+    stripe.api_key = settings.STRIPE_SECRET_KEY
     return render(request, 'payment_successful.html')
 
 
 def payment_cancelled(request):
-    stripe.api_key = settings.STRIPE_TEST_SECRET_KEY
+    stripe.api_key = settings.STRIPE_SECRET_KEY
     return render(request, 'payment_cancelled.html')
 
 

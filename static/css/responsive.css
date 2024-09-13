@@ -2,13 +2,17 @@
   .container {
     max-width: 1200px;
   }
-
-
+  .main_banner{
+	height: 650px;
+	background-size: cover;
+	background-repeat: no-repeat;
+    }
 
   .res {
-        min-height: 600px; /* Мінімальна висота картки */
-        max-height: 600px;
+        min-height: 480px; /* Мінімальна висота картки */
+        max-height: 480px;
     }
+
   .res-1 {
         min-height: 530px; /* Мінімальна висота картки */
         max-height: 530px;
@@ -20,6 +24,7 @@
 }
 
 @media only screen and (max-width:991px){
+
 	.about_image:before {
 		right: 124px !important;
 	}
@@ -43,6 +48,12 @@
 		margin-top: 30px;
 	}
 
+
+.main_banner{
+	height: 650px;
+	background-size: cover;
+	background-repeat: no-repeat;
+	}
 
     .mobile-break-m {
         display: inline;
@@ -113,10 +124,10 @@
 		background: #222;
 	}
 	.banner_content strong{
-		font-size: 26px !important;
+		font-size: 20px !important;
 	}
 	.banner_content h1{
-		font-size: 45px !important;
+		font-size: 35px !important;
 	}
 	.about_image{
 		text-align: center;

@@ -1,4 +1,5 @@
 {% load static %}
+{% load compress %}
 <!doctype html>
 <html lang="zxx">
 	<head>
@@ -11,12 +12,13 @@
 
 		<meta property="og:title" content="AVRORAAI - Умный помощник для работы с изображениями">
 		<meta property="og:description" content="Создавайте, изменяйте и анимируйте изображения по вашему запросу с нашим умным помощником.">
-		<meta property="og:url" content="https://avroraai.com/about">
+		<meta property="og:url" content="https://avroraai.com/info_for_investors/">
 
 		<title>{% block title %}Главная{% endblock %}</title>
 
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,700,800" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,400i,500,600,600i,700,800" rel="stylesheet">
+		{% compress css %}
 		<link href="{% static 'fonts/font-awesome.min.css' %}" rel="stylesheet"/>
 		<link href="{% static 'fonts/themify-icons.css' %}" rel="stylesheet"/>
 		<link href="{% static 'fonts/etline.css' %}" rel="stylesheet"/>
@@ -24,7 +26,7 @@
 		<link href="{% static 'css/lightbox.min.css' %}" rel="stylesheet"/>
 		<link href="{% static 'css/responsive.css' %}" rel="stylesheet"/>
 		<link href="{% static 'css/style.css' %}" rel="stylesheet"/>
-
+		{% endcompress %}
 	</head>
 	<body data-spy="scroll" data-offset="80">
 
@@ -35,8 +37,10 @@
 
 		{% include "includes/footer.html" %}
 
+
 		<script src="https://unpkg.com/htmx.org@1.7.0"></script>
 		<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+		{% compress js preload %}
 		<script src="{% static 'js/script.js' %}"></script>
 		<script src="{% static 'js/jquery.min.js' %}"></script>
 		<script src="{% static 'js/bootstrap.min.js' %}"></script>
@@ -62,5 +66,6 @@
 			});
 		</script>
 		<script src="{% static 'js/main.js' %}"></script>
+		{% endcompress %}
 	</body>
 </html>

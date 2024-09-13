@@ -12,7 +12,7 @@ class CommonContextMixin:
         invested = stock.total_quantity - stock.remaining_quantity
 
         return {
-            'invested':invested,
+            'invested': invested,
             'transaction_count': transaction_count,
             'user_count': user_count,
             'stock': stock,
