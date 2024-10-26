@@ -22,11 +22,11 @@ Git, SOLID, Stripe
 
 # Images: 
 
-### index 
-![index](images/index.png)
 ### signup 
 ![signup](images/signup.png)
-### catalog 
+### index 
+![index](images/index.png)
+### info 
 ![info](images/info.png)
-### detail 
+### profile 
 ![profile](images/profile.png)
