@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Аутентификация{% endblock %}
+{% block title %}Authentication{% endblock %}
 
 {% block content %}
 
@@ -20,10 +20,9 @@
 <section class="section_padding">
     <div class="container">
         <div class="section_heading text-center">
-            <strong>аутентификация</strong>
-            <h2>Регистрация</h2>
-            <p>Создайте новую учетную запись, чтобы получить доступ к эксклюзивным функциям и возможностям. Просто
-                заполните форму ниже и следуйте инструкциям.</p>
+            <strong>Authentication</strong>
+            <h2>Registration</h2>
+            <p>Create a new account to access exclusive features and benefits. Just fill out the form below and follow the instructions.</p>
             <div class="sm_border"></div>
         </div>
         <form id="contact-form" method="post" action="{% url 'account_signup' %}">
@@ -45,7 +44,7 @@
 
                     <div class="form-group col-sm-12">
                         <input type="text" name="username" class="form-control" id="username"
-                               placeholder="{% trans 'Имя пользователя' %} *"
+                               placeholder="{% trans 'Username' %} *"
                                required="required">
                     </div>
                     <div class="form-group col-sm-12">
@@ -55,18 +54,18 @@
                     </div>
                     <div class="form-group col-sm-12">
                         <input type="password" name="password1" class="form-control" id="password1"
-                               placeholder="{% trans 'Пароль' %} *"
+                               placeholder="{% trans 'Password' %} *"
                                required="required">
                     </div>
                     <div class="form-group col-sm-12">
                         <input type="password" name="password2" class="form-control" id="password2"
-                               placeholder="{% trans 'Подтвердите пароль' %} *"
+                               placeholder="{% trans 'Confirm Password' %} *"
                                required="required">
                     </div>
                     <div class="form-group mb0 col-sm-12">
                         <div class="actions">
                             <button type="submit" value="Signup" name="submit"
-                                    class="btn btn-lg main_btn btn_shadow" title="Регистрация">{% trans 'Регистрация' %}
+                                    class="btn btn-lg main_btn btn_shadow" title="Registration">{% trans 'Register' %}
                             </button>
                         </div>
                     </div>
@@ -74,19 +73,15 @@
             </div>
         </form>
         <div class="text-center">
-            <p>Если у вас уже есть аккаунт: <a href="{% url 'account_login' %}">Войти</a></p>
+            <p>If you already have an account: <a href="{% url 'account_login' %}">Log in</a></p>
         </div>
         <div class="text-center social-accounts mt-3">
             <hr>
-            <p>или</p>
+            <p>or</p>
             <div class="d-flex justify-content-around align-items-center mb-3">
                 <button onclick="window.location.href='{% provider_login_url 'google' %}'"
                         class="btn btn-lg main_btn btn_shadow">
                     <img src="{% static 'images/Google.png' %}" alt="Google" style="width: 20px; height: 20px;">
-                </button>
-                <button onclick="window.location.href='{% provider_login_url 'yandex' %}'"
-                        class="btn btn-lg main_btn btn_shadow">
-                    <img src="{% static 'images/Yandex.png' %}" alt="Yandex" style="width: 20px; height: 20px;">
                 </button>
             </div>
         </div>

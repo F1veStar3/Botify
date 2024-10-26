@@ -1,71 +1,79 @@
 {% load static %}
 {% load compress %}
 <!doctype html>
-<html lang="zxx">
-	<head>
-		<!-- Meta -->
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-		<link rel="icon" type="image/x-icon" href="{% static 'images/icon.jpg' %}">
+<html lang="en">
+<head>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <link rel="icon" type="image/x-icon" href="{% static 'images/icon.jpg' %}">
 
-		<meta property="og:title" content="AVRORAAI - Умный помощник для работы с изображениями">
-		<meta property="og:description" content="Создавайте, изменяйте и анимируйте изображения по вашему запросу с нашим умным помощником.">
-		<meta property="og:url" content="https://avroraai.com/info_for_investors/">
+    <meta property="og:title" content="Ai BOT - Smart Assistant for Working with Images">
+    <meta property="og:description"
+          content="Create, edit, and animate images on demand with our smart assistant.">
+    <meta property="og:url" content="#">
 
-		<title>{% block title %}Главная{% endblock %}</title>
+    <title>{% block title %}Main{% endblock %}</title>
 
-		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,700,800" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,400i,500,600,600i,700,800" rel="stylesheet">
-		{% compress css %}
-		<link href="{% static 'fonts/font-awesome.min.css' %}" rel="stylesheet"/>
-		<link href="{% static 'fonts/themify-icons.css' %}" rel="stylesheet"/>
-		<link href="{% static 'fonts/etline.css' %}" rel="stylesheet"/>
-		<link href="{% static 'css/plugins.css' %}" rel="stylesheet"/>
-		<link href="{% static 'css/lightbox.min.css' %}" rel="stylesheet"/>
-		<link href="{% static 'css/responsive.css' %}" rel="stylesheet"/>
-		<link href="{% static 'css/style.css' %}" rel="stylesheet"/>
-		{% endcompress %}
-	</head>
-	<body data-spy="scroll" data-offset="80">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,700,800" onload="this.media='all'" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,400i,500,600,600i,700,800" onload="this.media='all'" rel="stylesheet">
 
-		{% include "includes/navbar.html" %}
+    <link href="{% static 'fonts/font-awesome.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/lightbox.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'fonts/themify-icons.css' %}" rel="stylesheet"/>
+    <link href="{% static 'fonts/etline.css' %}" rel="stylesheet"/>
+<!--    {# compress css #}-->
+    <link href="{% static 'css/plugins.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet"/>
+<!--    {# endcompress #}-->
+</head>
 
-		{% block content %}
-		{% endblock content %}
+<body data-spy="scroll" data-offset="80">
 
-		{% include "includes/footer.html" %}
+{% include "includes/navbar.html" %}
+
+{% block content %}
+{% endblock content %}
+
+{% include "includes/footer.html" %}
 
 
-		<script src="https://unpkg.com/htmx.org@1.7.0"></script>
-		<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
-		{% compress js preload %}
-		<script src="{% static 'js/script.js' %}"></script>
-		<script src="{% static 'js/jquery.min.js' %}"></script>
-		<script src="{% static 'js/bootstrap.min.js' %}"></script>
-		<script src="{% static 'js/owl.carousel.min.js' %}"></script>
-		<script src="{% static 'js/modernizr-2.8.3.min.js' %}"></script>
-		<script src="{% static 'js/jquery.nav.js' %}"></script>
-		<script src="{% static 'js/jquery.inview.min.js' %}"></script>
-		<script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
-		<script src="{% static 'js/animated-headline.js' %}"></script><script src="{% static 'js/jquery.ripples-min.js' %}"></script>
-		<script src="{% static 'js/lightbox.min.js' %}"></script>
-		<script src="{% static 'js/slick-nav.js' %}"></script>
+<script src="https://unpkg.com/htmx.org@1.7.0" defer></script>
 
-		<script src="{% static 'js/scrolltopcontrol.js' %}"></script>
-		<script src="{% static 'js/wow.min.js' %}"></script>
-		<script type="text/javascript">
-			jQuery(document).ready(function(){
-				var $home = $('#home');
-				$home.ripples({
-					resolution: 512,
-					dropRadius: 20,
-					perturbance: 0.04,
-				});
-			});
-		</script>
-		<script src="{% static 'js/main.js' %}"></script>
-		{% endcompress %}
-	</body>
+
+{# compress js #}
+<script src="{% static 'js/script.js' %}" defer></script>
+<script src="{% static 'js/jquery.min.js' %}" defer></script>
+<script src="{% static 'js/bootstrap.min.js' %}" defer></script>
+<script src="{% static 'js/owl.carousel.min.js' %}" defer></script>
+<script src="{% static 'js/modernizr-2.8.3.min.js' %}" defer></script>
+<script src="{% static 'js/jquery.nav.js' %}" defer></script>
+<script src="{% static 'js/jquery.inview.min.js' %}" defer></script>
+<script src="{% static 'js/isotope.pkgd.min.js' %}" defer></script>
+<script src="{% static 'js/animated-headline.js' %}" defer></script>
+<script src="{% static 'js/jquery.ripples-min.js' %}" defer></script>
+<script src="{% static 'js/lightbox.min.js' %}" defer></script>
+<script src="{% static 'js/slick-nav.js' %}" defer></script>
+<script src="{% static 'js/scrolltopcontrol.js' %}" defer></script>
+<script src="{% static 'js/wow.min.js' %}" defer></script>
+<script src="{% static 'js/main.js' %}" defer></script>
+{# endcompress #}
+
+
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        var $home = $('#home');
+        $home.ripples({
+            resolution: 512,
+            dropRadius: 20,
+            perturbance: 0.04,
+        });
+    });
+</script>
+
+
+</body>
 </html>

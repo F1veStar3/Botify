@@ -1,7 +1,7 @@
 from django.urls import reverse
 from django.utils.html import format_html
 from django.contrib import admin
-from .models import Events, MapPoint, Transaction, Stock, Review, RefundRequest, Notification, Service, Massage, Profile
+from .models import Events, Transaction, Stock, Review, RefundRequest, Notification, Service, Massage, Profile
 
 
 # Register your models here.
@@ -13,12 +13,6 @@ class PageAdmin(admin.ModelAdmin):
 @admin.register(Service)
 class PageAdmin(admin.ModelAdmin):
     list_display = ['title']
-
-
-@admin.register(MapPoint)
-class PageAdmin(admin.ModelAdmin):
-    list_display = ['name']
-
 
 @admin.register(Profile)
 class PageAdmin(admin.ModelAdmin):
@@ -52,7 +46,7 @@ class RefundRequestAdmin(admin.ModelAdmin):
     def transaction_id(self, obj):
         return obj.transaction.id
 
-    transaction_id.short_description = 'ID Транзакции'
+    transaction_id.short_description = 'ID transaction'
 
 
 @admin.register(Notification)
@@ -61,4 +55,4 @@ class PageAdmin(admin.ModelAdmin):
 
     def send_notification_link(self, obj):
         url = reverse('send_notification')
-        return format_html('<a href="{}">Рассылка</a>', url)
+        return format_html('<a href="{}">send_notification</a>', url)

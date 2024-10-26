@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Аутентификация{% endblock %}
+{% block title %}Authentication{% endblock %}
 
 {% block content %}
 {% load i18n %}
@@ -13,23 +13,22 @@
     }
 
     .login-img-g {
-    width: 25px;
-    height: 25px;
+        width: 25px;
+        height: 25px;
+    }
 
     .login-img-y {
-    width: 23px;
-    height: 23px;
-}
+        width: 23px;
+        height: 23px;
+    }
 </style>
 
 <section class="section_padding">
     <div class="container">
         <div class="section_heading text-center">
-            <strong>аутентификация</strong>
-            <h2>Вход</h2>
-            <p>Войдите в свою учетную запись, чтобы получить доступ к персонализированным настройкам и сохранять свои
-                предпочтения. Если у вас еще нет учетной записи, зарегистрируйтесь прямо сейчас, чтобы воспользоваться
-                всеми преимуществами нашего сервиса.</p>
+            <strong>Authentication</strong>
+            <h2>Login</h2>
+            <p>Please log in to your account to access personalized settings and save your preferences. If you don't have an account yet, sign up right now to take advantage of all the benefits of our service.</p>
             <div class="sm_border"></div>
         </div>
         <form id="contact-form" method="post" action="{% url 'account_login' %}">
@@ -50,18 +49,18 @@
                         </div>
                         {% endif %}
                         <input type="text" name="login" class="form-control" id="login"
-                               placeholder="{% trans 'Email или Имя пользователя' %} *"
+                               placeholder="{% trans 'Email or Username' %} *"
                                required="required">
                     </div>
                     <div class="form-group col-sm-12">
                         <input type="password" name="password" class="form-control" id="password"
-                               placeholder="{% trans 'Пароль' %} *"
+                               placeholder="{% trans 'Password' %} *"
                                required="required">
                     </div>
                     <div class="form-group mb0 col-sm-12">
                         <div class="actions">
-                            <button type="submit" value="Войти" name="submit"
-                                    class="btn btn-lg main_btn btn_shadow" title="Войти">{% trans 'Войти' %}
+                            <button type="submit" value="Log In" name="submit"
+                                    class="btn btn-lg main_btn btn_shadow" title="Log In">{% trans 'Log In' %}
                             </button>
                         </div>
                     </div>
@@ -70,20 +69,16 @@
         </form>
 
         <div class="text-center">
-            <a href="{% url 'account_signup' %}">{% trans 'Регистрация' %}</a> |
-            <a href="{% url 'account_reset_password' %}">{% trans 'Забыли пароль?' %}</a>
+            <a href="{% url 'account_signup' %}">{% trans 'Sign Up' %}</a> |
+            <a href="{% url 'account_reset_password' %}">{% trans 'Forgot Password?' %}</a>
         </div>
-        <div class=" text-center social-accounts mt-3">
+        <div class="text-center social-accounts mt-3">
             <hr>
-            <p>или</p>
+            <p>or</p>
             <div class="d-flex justify-content-around align-items-center mb-3">
                 <button onclick="window.location.href='{% provider_login_url 'google' %}'"
                         class="btn btn-lg main_btn btn_shadow">
                     <img src="{% static 'images/Google.png' %}" alt="Google" style="width: 20px; height: 20px;">
-                </button>
-                <button onclick="window.location.href='{% provider_login_url 'yandex' %}'"
-                        class="btn btn-lg main_btn btn_shadow">
-                    <img src="{% static 'images/Yandex.png' %}" alt="Yandex" style="width: 20px; height: 20px;">
                 </button>
             </div>
         </div>

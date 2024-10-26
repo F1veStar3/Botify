@@ -9,8 +9,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from django.core.paginator import Paginator
 
-from .forms import ProfileForm, ReviewForm, UserForm, NotificationForm, MassageForm
-from .models import Events, MapPoint, Notification, RefundRequest, Stock, Transaction, Review, Profile
+from .forms import ProfileForm, ReviewForm, UserForm, NotificationForm, MessageForm
+from .models import Events, Notification, RefundRequest, Stock, Transaction, Review, Profile
 from .mixins import CommonContextMixin
 
 import stripe
@@ -44,7 +44,7 @@ def get_common_context():
 
 
 def process_form(request):
-    form = MassageForm(request.POST or None)
+    form = MessageForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
         form.save()
     return form
@@ -88,7 +88,7 @@ def profile_view(request):
     stock = common_context.get('stock')
 
     transactions = Transaction.objects.filter(user=request.user).order_by('-id')
-    paginator = Paginator(transactions, 10)  # 5 коментарів на сторінку
+    paginator = Paginator(transactions, 10)  # 5 comments per page
     page_number = request.GET.get('page', 1)
     t_page_obj = paginator.get_page(page_number)
 
@@ -119,8 +119,8 @@ def profile_view(request):
                 review.save()
                 notification = Notification.objects.create(
                     user=user,
-                    title="Отзыв успешно отправлен",
-                    message="Ваш отзыв был успешно отправлен. Спасибо за ваш вклад!"
+                    title="Review successfully sent",
+                    message="Your review has been successfully submitted. Thank you for your contribution!"
                 )
                 return redirect('profile')
         elif 'pay_form' in request.POST:
@@ -135,7 +135,7 @@ def profile_view(request):
                         'unit_amount': int(total_price * 100),
 
                         'product_data': {
-                            'name': f'Количество: {quantity}',
+                            'name': f'Quantity: {quantity}',
                         },
                     },
                     'quantity': 1,
@@ -206,7 +206,7 @@ def stripe_webhook(request):
     if event['type'] == 'checkout.session.completed':
         session = event['data']['object']
 
-        # Отримуємо метадані
+        # Retrieve metadata
         user_id = session['metadata']['user_id']
         quantity = session['metadata']['quantity']
         session_id = session.get('id')
@@ -225,17 +225,14 @@ def stripe_webhook(request):
 
         notification = Notification.objects.create(
             user=user,
-            title="Оплата прошла успешно",
-            message=f"Ваша оплата на сумму {total_price}$ была успешно завершена. Спасибо за покупку!"
+            title="Payment successfully completed",
+            message=f"Your payment of {total_price}$ was successfully completed. Thank you for your purchase!"
         )
 
     return JsonResponse({'status': 'success'}, status=200)
 
 
-class MapPointsAPI(View):
-    def get(self, request):
-        points = MapPoint.objects.all().values('name', 'latitude', 'longitude')
-        return JsonResponse(list(points), safe=False)
+
 
 
 @require_POST
@@ -251,8 +248,8 @@ def process_refund(request, transaction_id):
     if created:
         Notification.objects.create(
             user=request.user,
-            title="Запрос на возврат отправлен",
-            message=f"Ваш запрос на возврат средств по транзакции #{transaction.id} был успешно отправлен. Мы рассмотрим его в ближайшее время."
+            title="Refund request sent",
+            message=f"Your refund request for transaction #{transaction.id} has been successfully sent. We will review it soon."
         )
 
     return redirect('profile')

@@ -18,7 +18,6 @@ from django.urls import path
 from django.conf.urls import include
 from django.conf.urls.static import static
 from django.conf import settings
-import debug_toolbar
 from django.views.generic.base import TemplateView
 # Sitemaps
 from django.contrib.sitemaps.views import sitemap
@@ -33,10 +32,10 @@ urlpatterns = [
     path('robots.txt/', TemplateView.as_view(template_name="robots.txt", content_type="text/plain")),
 
     path('', include('main.urls')),
-    path('admin_1/', include('admin_honeypot.urls', namespace='admin_honeypot')),
-    path('admin/', admin.site.urls),
+    path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
+    path('secret/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
-    path('__debug__/', include(debug_toolbar.urls)),
+
 ]
 
 if settings.DEBUG:

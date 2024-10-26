@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
 {% load cache %}
 {% load static %}
-{% block title %}Главная{% endblock %}
 
 {% block content %}
-{# cache 900 "index_page_content" #}
+{% cache 900 "index_page_content" %}
 
 
 <section id="home" class="main_banner banner_bg ripple-effect jquery-ripples">
@@ -12,28 +11,27 @@
         <div class="row">
             <div class="col-md-7 col-sm-12 col-xs-12">
                 <div class="banner_content" style="margin-top: 150px;">
-                    <strong>Привет !</strong>
+                    <strong>Hello!</strong>
                     <h1 class="cd-headline clip">
-                        <span class="fw_600">Я твой умный помощник для</span><br>
+                        <span class="fw_600">I am your assistant for</span><br>
                         <span class="cd-words-wrapper">
-                            <b class="is-visible fw_300">создания <br class="mobile-break-m"> изображений </b>
-                            <b class="fw_300">изменения <br class="mobile-break-m"> изображений </b>
-                            <b class="fw_300">анимирования <br class="mobile-break-m"> изображений</b>
-                            <b class="fw_300">творчества</b>
-                            <b class="fw_300">создания <br class="mobile-break-m"> музыкальных<br
-                                    class="mobile-break-m"> произведений</b>
+                            <b class="is-visible fw_300">creating <br class="mobile-break-m"> images</b>
+                            <b class="fw_300">editing <br class="mobile-break-m"> images</b>
+                            <b class="fw_300">animating <br class="mobile-break-m"> images</b>
+                            <b class="fw_300">creativity</b>
+                            <b class="fw_300">creating <br class="mobile-break-m"> musical <br class="mobile-break-m"> works</b>
                         </span>
                     </h1>
-                    <p>Если вы хотите поддержать проект, вы можете стать инвестором. Вся информация находится в
-                        <a href="{% url 'profile' %}" style="color: black;">личном профиле</a>.</p>
+                    <p>If you want to support the project, you can become an investor. All information can be found in
+                        <a href="{% url 'profile' %}" style="color: black;">your personal profile</a>.</p>
                     <br>
-                    <a arget='_blank' href="https://t.me/generate_images_bot"><strong>Перейти в нейросеть</strong></a>
+                    <a target='_blank' href="#"><strong>Go to the neural network</strong></a>
                     <ul class="banner_social_link">
-                        <li><a target='_blank' href="https://t.me/generate_images_bot"><i
+                        <li><a target='_blank' href="#"><i
                                 class="fa fa-telegram"></i></a></li>
-                        <li><a target='_blank' href="https://wa.me/37259208680"><i class="fa fa-whatsapp"></i></a></li>
+                        <li><a target='_blank' href="#"><i class="fa fa-whatsapp"></i></a></li>
                         <li><a target='_blank'
-                               href="https://mail.google.com/mail/u/0/?fs=1&to=avroraai.bot@gmail.com&su=&body=&tf=cm"><i
+                               href="#"><i
                                 class="fa fa-envelope"></i></a></li>
                     </ul>
                 </div>
@@ -42,56 +40,24 @@
     </div>
 </section>
 
-
 {% include 'includes/about.html' %}
-
-<section class="section_padding">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="section_heading text-center">
-                    <strong>Информация</strong>
-                    <h2>Пример обработки</h2>
-                    <p>В этом разделе вы можете ознакомиться с примерами обработки изображений и промо-видео. Мы
-                        демонстрируем профессиональные подходы к редактированию, которые помогут вашему визуальному
-                        контенту
-                        заиграть новыми красками и привлечь внимание аудитории.</p>
-                    <div class="sm_border"></div>
-                </div>
-            </div>
-
-            <div class="col-12">
-                <div class="container">
-                    <div class="testmonial_slider_area owl-carousel">
-                        <img src="{% static 'images/img1.jpg' %}" alt="Фото 1" class="img-fluid height media-item"/>
-                        <img src="{% static 'images/img2.jpg' %}" alt="Фото 2" class="img-fluid media-item"/>
-                        <video src="{% static 'images/promo.mp4' %}" controls class="img-fluid media-item"></video>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
 
 {% include 'includes/overview.html' %}
 
 {% include 'includes/counter.html' %}
-
 
 <section id="blog" class="section_padding pb_70">
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-sm-12-col-xs-12">
                 <div class="section_heading text-center">
-                    <strong>информация</strong>
-                    <h2>Новости</h2>
-                    <p>Будьте в курсе последних обновлений и новостей о нашем <a target='_blank'
-                                                                                 href="https://t.me/generate_images_bot">Telegram
-                        боте</a>. Мы постоянно добавляем
-                        новые функции и возможности, чтобы улучшить ваш опыт работы с нейросетями.
-                        Вы сможете увидеть процесс совершенствования нейросети и присоединится к разработке.
-                        Сделать это можно в <a href="{% url 'profile' %}">личном кабинете</a></p>
+                    <strong>Information</strong>
+                    <h2>News</h2>
+                    <p>Stay updated with the latest updates and news about our
+                        Telegram bot. We are constantly adding new features and
+                        capabilities to improve your experience with neural networks. You will be able to see the
+                        process of the neural network's improvement and join the development. You can do this in your <a
+                                href="{% url 'profile' %}">personal account</a>.</p>
                     <div class="sm_border"></div>
                 </div>
             </div>
@@ -102,7 +68,7 @@
                     <div class="single_blog">
                         <div class="blog-thumb">
                             <div class="blog-image">
-                                <img src="{{ event.img.url }}" class="img-responsive" alt="новости"
+                                <img src="{{ event.img.url }}" class="img-responsive" alt="news"
                                      style="width: 400px; height: 300px; object-fit: cover;">
                             </div>
                             <div class="blog-info">
@@ -111,7 +77,8 @@
                                 <h4>{{ event.name }}</h4>
                                 <p>{{ event.description }}</p>
                                 {% if event.url %}
-                                <a href="{{ event.url }}" class="btn btn-default blog_btn main_btn" target="_blank">Перейти</a>
+                                <a href="{{ event.url }}" class="btn btn-default blog_btn main_btn"
+                                   target="_blank">Go</a>
                                 {% endif %}
                             </div>
                         </div>
@@ -125,6 +92,7 @@
 
 {% include 'includes/contact.html' %}
 
+
 <!-- END CONTACT -->
-{# endcache #}
+{% endcache %}
 {% endblock content %}

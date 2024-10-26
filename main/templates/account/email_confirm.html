@@ -1,18 +1,17 @@
 {% extends 'base.html' %}
-{% block title %}Аутентификация{% endblock %}
+{% block title %}Authentication{% endblock %}
 {% load i18n %}
 {% load account %}
 {% load allauth %}
-
 
 {% block content %}
 <section class="section_padding footer-fixed">
     <div class="container">
         <div class="section_heading text-center">
-            <strong>Подтверждение Email</strong>
-            <h2>Подтверждение Email</h2>
-            <p>На ваш электронный адрес было отправлено письмо для подтверждения.</p>
-            <p>Пожалуйста, перейдите по ссылке в письме для подтверждения вашей учетной записи.</p>
+            <strong>Email Confirmation</strong>
+            <h2>Email Confirmation</h2>
+            <p>An email has been sent to your address for confirmation.</p>
+            <p>Please follow the link in the email to confirm your account.</p>
             <div class="sm_border"></div>
         </div>
 
@@ -20,21 +19,21 @@
             <div class="text-center">
                 {% user_display confirmation.email_address.user as user_display %}
                 {% if can_confirm %}
-                    <p>Пожалуйста, подтвердите, что <a href="mailto:{{ email }}">{{ email }}</a> является адресом электронной почты пользователя {{ user_display }}.</p>
+                    <p>Please confirm that <a href="mailto:{{ email }}">{{ email }}</a> is the email address of user {{ user_display }}.</p>
                     {% url 'account_confirm_email' confirmation.key as action_url %}
                     <form method="post" action="{{ action_url }}">
                         {% csrf_token %}
                         {{ redirect_field }}
-                        <button type="submit" class="btn btn-lg main_btn btn_shadow">Подтвердить</button>
+                        <button type="submit" class="btn btn-lg main_btn btn_shadow">Confirm</button>
                     </form>
                 {% else %}
-                    <p>Не удалось подтвердить {{ email }}, так как этот адрес уже подтвержден другим аккаунтом.</p>
+                    <p>Unable to confirm {{ email }}, as this address has already been confirmed by another account.</p>
                 {% endif %}
             </div>
         {% else %}
             <div class="text-center">
                 {% url 'account_email' as email_url %}
-                <p>Ссылка для подтверждения электронной почты истекла или недействительна. Пожалуйста, <a href="{{ email_url }}">отправьте запрос на новое подтверждение</a>.</p>
+                <p>The email confirmation link has expired or is invalid. Please <a href="{{ email_url }}">request a new confirmation</a>.</p>
             </div>
         {% endif %}
     </div>

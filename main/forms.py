@@ -9,7 +9,7 @@ class NotificationForm(forms.ModelForm):
         fields = ['title', 'message']
 
 
-class MassageForm(forms.ModelForm):
+class MessageForm(forms.ModelForm):
     class Meta:
         model = Massage
         fields = ['name', 'email', 'subject', 'message']

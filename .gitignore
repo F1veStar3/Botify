@@ -4,7 +4,7 @@ __pycache__/
 *.pyd
 .Python
 env/
-venv/
+.venv
 .env
 .idea/
 .vscode/
@@ -13,3 +13,4 @@ db.sqlite3
 staticfiles/
 media/
 *.log
+cache

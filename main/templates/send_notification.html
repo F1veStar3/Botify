@@ -6,8 +6,8 @@
         <div class="row">
             <div class="col-md-12 col-sm-12-col-xs-12">
                 <div class="section_heading text-center">
-                    <strong>Параметры</strong>
-                    <h2>Рассылка</h2>
+                    <strong>Parameters</strong>
+                    <h2>Newsletter</h2>
                     <div class="sm_border"></div>
                 </div>
             </div>
@@ -15,24 +15,23 @@
                 {% csrf_token %}
                 <div class="form-group col-sm-12">
                     <input type="title" name="title" class="form-control" id="title"
-                           placeholder="Название"
+                           placeholder="Title"
                            required="required">
                 </div>
                 <div class="form-group col-sm-12 mab-none">
         <textarea rows="8" name="message" class="form-control" id="description"
-                  placeholder="Ваше сообщение здесь ..."
+                  placeholder="Your message here ..."
                   required="required"></textarea>
                 </div>
 
                 <div class="text-center">
                     <button type="submit" value="Send message"
-                            class="btn btn-lg main_btn btn_shadow">Отправить
+                            class="btn btn-lg main_btn btn_shadow">Send
                     </button>
                 </div>
             </form>
         </div>
     </div>
 </section>
-
 
 {% endblock %}

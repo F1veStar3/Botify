@@ -1,9 +1,8 @@
 {% extends "index.html" %}
-{% block title %}Аутентификация{% endblock %}
+{% block title %}Authentication{% endblock %}
 
 {% load i18n %}
 {% block content %}
-
 
 <section class="section_padding footer-fixed">
     <div class="container">
@@ -11,7 +10,7 @@
         <form method="post">
             {% csrf_token %}
             <button type="submit" class="btn btn-lg main_btn btn_shadow">
-                Далее
+                Next
             </button>
         </form>
         </div>

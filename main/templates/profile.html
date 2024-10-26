@@ -1,18 +1,17 @@
 {% extends 'base.html' %}
-{% block title %}Профиль{% endblock %}
+{% block title %}Profile{% endblock %}
 
 
 {% block content %}
 {% load static %}
-
 
 <section id="blog" class="section_padding pb_70">
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-sm-12-col-xs-12">
                 <div class="section_heading text-center">
-                    <strong>Профиль</strong>
-                    <h2>Профиль</h2>
+                    <strong>Profile</strong>
+                    <h2>Profile</h2>
                     <div class="sm_border"></div>
                 </div>
             </div>
@@ -21,7 +20,7 @@
                 <form id="profile-form" action="{% url 'profile' %}" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <input type="file" id="file-input" name="logo" accept="image/*" style="display:none;">
-                    <img src="{{ user.profile.get_logo }}" alt="Логотип пользователя" class="user-logo" id="user-logo">
+                    <img src="{{ user.profile.get_logo }}" alt="User Logo" class="user-logo" id="user-logo">
                 </form>
                 <h3 class="user-name">{{ user.first_name }} {{ user.last_name }}</h3>
                 <p class="user-email">{{ user.email }}</p>
@@ -56,7 +55,7 @@
                         <i class="icon-happy"></i>
                     </div>
                     <span class="counter">{{ transactions.count }}</span>
-                    <h5>Совершено транзакций</h5>
+                    <h5>Transactions Completed</h5>
                 </div>
             </div>
 
@@ -66,7 +65,7 @@
                         <i class="icon-briefcase"></i>
                     </div>
                     <span class="counter">{{ profile.balance }}</span>
-                    <h5>На вашем счету</h5>
+                    <h5>Your Balance</h5>
                 </div>
             </div>
 
@@ -76,7 +75,7 @@
                         <i class="icon-trophy"></i>
                     </div>
                     <span class="counter">{{ profile.total_spent }}</span>
-                    <h5>На общую сумму</h5>
+                    <h5>Total Amount Spent</h5>
                 </div>
             </div>
 
@@ -86,7 +85,7 @@
                         <i class="icon-profile-male"></i>
                     </div>
                     <span class="counter">0</span>
-                    <h5>Новых уведомлений</h5>
+                    <h5>New Notifications</h5>
                 </div>
             </div>
         </div>
@@ -96,10 +95,10 @@
 <section class="section_padding">
     <div class="container">
         <div class="section_heading text-center">
-            <strong>Купить</strong>
-            <h2>Купить акции</h2>
-            <p>Инвестируйте в наши акции, чтобы стать частью нашего проекта и получать выгоду от его развития. Цена за
-                единицу: {{ stock.price_per_unit }}</p>
+            <strong>Buy</strong>
+            <h2>Buy Shares</h2>
+            <p>Invest in our shares to become part of our project and benefit from its development. Price per
+                unit: {{ stock.price_per_unit }}</p>
             <div class="sm_border"></div>
         </div>
         <form method="post" id="contact-form">
@@ -113,20 +112,20 @@
                 <span>{{ stock.remaining_quantity }}</span>
             </div>
             <div class="form-group col-sm-6">
-                <label for="quantityInput">Количество:</label>
+                <label for="quantityInput">Quantity:</label>
                 <input type="number" class="form-control" id="quantityInput"
                        min="{{ stock.minimum_purchase_quantity }}" max="{{ stock.remaining_quantity }}"
                        value="{{ stock.minimum_purchase_quantity }}">
             </div>
             <div class="form-group col-sm-6">
-                <label for="total-price">Общая стоимость:</label>
+                <label for="total-price">Total Cost:</label>
                 <input type="text" class="form-control" id="total-price" value="0.00" readonly>
             </div>
             <input type="hidden" name="quantity" id="quantity"
                    value="{{ stock.minimum_purchase_quantity }}">
 
             <div class="text-center">
-                <button type="submit" class="btn btn-lg main_btn btn_shadow" name="pay_form">Купить
+                <button type="submit" class="btn btn-lg main_btn btn_shadow" name="pay_form">Buy
                 </button>
             </div>
         </form>
@@ -138,10 +137,10 @@
     <div class="container">
         <div class="col-md-12 col-sm-12-col-xs-12">
             <div class="section_heading text-center">
-                <strong>История</strong>
-                <h2>История транзакций</h2>
-                <p>В этом разделе вы можете просмотреть подробную историю всех ваших транзакций. Мы сохраняем все данные
-                    для вашего удобства и предоставляем доступ к полной информации о каждом платеже.</p>
+                <strong>History</strong>
+                <h2>Transaction History</h2>
+                <p>In this section, you can view detailed history of all your transactions. We save all data
+                    for your convenience and provide access to complete information about each payment.</p>
                 <div class="sm_border"></div>
             </div>
         </div>
@@ -151,10 +150,10 @@
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Акции</th>
-                <th scope="col">Цена</th>
-                <th scope="col">Дата</th>
-                <th scope="col">Возврат</th>
+                <th scope="col">Shares</th>
+                <th scope="col">Price</th>
+                <th scope="col">Date</th>
+                <th scope="col">Refund</th>
             </tr>
             </thead>
             <tbody>
@@ -162,7 +161,7 @@
             </tbody>
         </table>
         {% else %}
-        <p class="text-center">Пока нет транзакций.</p>
+        <p class="text-center">No transactions yet.</p>
         {% endif %}
 
     </div>
@@ -173,10 +172,10 @@
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="section_heading text-center">
-                    <strong>Оставить отзыв</strong>
-                    <h2>Поделитесь своим мнением</h2>
-                    <p>Мы ценим ваши отзывы. Пожалуйста, оставьте свой отзыв, чтобы помочь нам улучшить качество наших
-                        услуг.</p>
+                    <strong>Leave a Review</strong>
+                    <h2>Share Your Opinion</h2>
+                    <p>We value your feedback. Please leave your review to help us improve the quality of our
+                        services.</p>
                     <div class="sm_border"></div>
                 </div>
             </div>
@@ -185,15 +184,15 @@
                 {% csrf_token %}
                 <div class="form-group col-sm-12">
                     <input type="text" name="subject" class="form-control" id="subject"
-                           placeholder="Тема отзыва *" required="required">
+                           placeholder="Review Subject *" required="required">
                 </div>
                 <div class="form-group col-sm-12">
         <textarea name="message" class="form-control" id="message"
-                  placeholder="Ваш отзыв *" rows="6" required="required"></textarea>
+                  placeholder="Your Review *" rows="6" required="required"></textarea>
                 </div>
                 <div class="text-center">
                     <button type="submit" value="Send review" name="review"
-                            class="btn btn-lg main_btn btn_shadow">Отправить отзыв
+                            class="btn btn-lg main_btn btn_shadow">Send Review
                     </button>
                 </div>
             </form>
@@ -207,10 +206,10 @@
         <div class="row">
             <div class="col-md-12 col-sm-12-col-xs-12">
                 <div class="section_heading text-center">
-                    <strong>Параметры</strong>
-                    <h2>Изменить персональную информацию</h2>
-                    <p>Здесь вы можете обновить свои персональные данные, такие как имя, контактную информацию и другие
-                        параметры. Мы обеспечиваем конфиденциальность и безопасность ваших данных.</p>
+                    <strong>Settings</strong>
+                    <h2>Update Personal Information</h2>
+                    <p>Here you can update your personal information such as name, contact information, and other
+                        settings. We ensure the confidentiality and security of your data.</p>
                     <div class="sm_border"></div>
                 </div>
             </div>
@@ -218,24 +217,23 @@
                 {% csrf_token %}
                 <div class="form-group col-sm-6">
                     <input type="text" name="first_name" class="form-control" id="first_name"
-                           placeholder="Имя *" value="{{ user.first_name }}" required="required">
+                           placeholder="First Name *" value="{{ user.first_name }}" required="required">
                 </div>
                 <div class="form-group col-sm-6">
                     <input type="text" name="last_name" class="form-control" id="last_name"
-                           placeholder="Фамилия *" value="{{ user.last_name }}" required="required">
+                           placeholder="Last Name *" value="{{ user.last_name }}" required="required">
                 </div>
                 <div class="form-group col-sm-12">
                     <input type="text" name="email" class="form-control" id="email"
-                           placeholder="Электронная почта *" value="{{ user.email }}"
+                           placeholder="Email *" value="{{ user.email }}"
                            required="required">
                 </div>
                 <div class="text-center">
                     <button type="submit" value="Send message" name="user_form"
-                            class="btn btn-lg main_btn btn_shadow">Обновить данные
+                            class="btn btn-lg main_btn btn_shadow">Save Changes
                     </button>
                 </div>
             </form>
-
         </div>
     </div>
 </section>

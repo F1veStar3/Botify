@@ -1,25 +1,26 @@
 <style>
 
     .icon svg {
-    width: 80px;
-    height: 80px;
-}
-/* Сховати опис і кнопку спочатку */
-.card-description, .card-button {
-    display: none;
-}
+        width: 80px;
+        height: 80px;
+    }
 
-/* Показати опис і кнопку при наведенні */
-.card:hover .card-description, .card:hover .card-button {
-    display: block;
-}
+    /* Сховати опис і кнопку спочатку */
+    .card-description, .card-button {
+        display: none;
+    }
 
-/* Сховати іконку та назву при наведенні */
-.card:hover .icon, .card:hover .card-title {
-    display: none;
-}
+    /* Показати опис і кнопку при наведенні */
+    .card:hover .card-description, .card:hover .card-button {
+        display: block;
+    }
 
-.card-description {
+    /* Сховати іконку та назву при наведенні */
+    .card:hover .icon, .card:hover .card-title {
+        display: none;
+    }
+
+    .card-description {
         margin-top: 10px;
     }
 
@@ -27,32 +28,32 @@
     .card {
         position: relative;
     }
+
     .card-button {
         position: absolute;
         bottom: 10px;
         right: 10px;
     }
 
-.custom-margin {
-    margin-top: 90px; /* або інше значення */
-}
+    .custom-margin {
+        margin-top: 90px; /* або інше значення */
+    }
 </style>
 
 
 <!-- Логіка для відображення опису при наведенні -->
 
 
-<section id="service" class="gray_bg section_padding pb_70">
+<section id="service" class="section_padding pb_70">
     <div class="container">
         <div class="col-md-12 col-sm-12-col-xs-12">
             <div class="section_heading text-center">
-                <strong>информация</strong>
-                <h2>Наши возможности</h2>
-                <p>Наш <a target='_blank' href="https://t.me/generate_images_bot">Telegram-бот</a> предлагает широкий
-                    спектр возможностей по созданию музыкальных произведений, видео,
-                    а также работы с изображениями (создание, анимирование, изменение и другое). Наши функции включают в
-                    себя настройку графических элементов, применение эффектов и анимаций, а также интеграцию с вашими
-                    проектами для повышения их визуальной привлекательности.</p>
+                <strong>Information</strong>
+                <h2>Our Capabilities</h2>
+                <p>Our Telegram bot offers a wide range of features for creating musical compositions, videos, and
+                    working with images (creating, animating, modifying, and more). Our functions include customizing
+                    graphic elements, applying effects and animations, as well as integrating with your projects to
+                    enhance their visual appeal.</p>
                 <div class="sm_border"></div>
             </div>
         </div>
@@ -73,10 +74,8 @@
 
                         {% if service.url %}
                         <a href="{{ service.url }}" class="btn btn-default blog_btn main_btn card-button"
-                           target="_blank">Перейти</a>
+                           target="_blank">Go to</a>
                         {% endif %}
-
-
                     </div>
                 </div>
             </div> <!-- End Col -->
@@ -84,4 +83,5 @@
         </div>
     </div>
 </section>
+
 
