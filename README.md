@@ -6,7 +6,7 @@
 
 ```python manage.py createsuperuser```
 
-# Steck: 
+# Stack: 
 
 ## Front-end
 JavaScript, JQuery, CSS, HTML, HTMX, Bootstrap
