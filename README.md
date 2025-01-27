@@ -12,13 +12,13 @@
 JavaScript, JQuery, CSS, HTML, HTMX, Bootstrap
 
 ## Back-end
-Python, Django, Allauth, Debug Toolbar, Django Compressor
+Python, Django 
 
 ## DataBases
 Sqlite3
 
 ## Additional
-Git, SOLID, Stripe
+Git, Stripe
 
 # Images: 
 
