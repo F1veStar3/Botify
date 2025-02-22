@@ -14,3 +14,4 @@ staticfiles/
 media/
 *.log
 cache
+.DS_Store

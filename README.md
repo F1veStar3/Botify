@@ -1,26 +1,43 @@
-# Commands:
+# Botify - Landing Blog for Stock Purchases
 
-```git@github.com:F1veStar3/info-calculator-shop.git```
+Botify is a landing blog platform where users can browse and purchase stocks. It combines a user-friendly interface with secure payment processing via Stripe.
 
-```python manage.py runserver```
+## Installation and Setup
 
-```python manage.py createsuperuser```
+### Prerequisites
+Ensure you have Python and Django installed.
 
-# Stack: 
+```sh
+pip install -r requirements.txt 
+```
 
-## Front-end
-JavaScript, JQuery, CSS, HTML, HTMX, Bootstrap
+### Running the Project
 
-## Back-end
-Python, Django 
+1. Clone the repository or download the project files.
+2. Navigate to the project directory.
+3. Run database migrations:
 
-## DataBases
-Sqlite3
+```sh
+python manage.py migrate
+```
 
-## Additional
-Git, Stripe
+4. Start the development server:
 
-# Images: 
+```sh
+python manage.py runserver
+```
+
+5. Open your browser and go to `http://127.0.0.1:8000/`.
+
+## Technology Stack
+
+- **Frontend:** JavaScript, jQuery, CSS, HTML, Bootstrap
+- **Backend:** Python, Django
+- **Payments:** Stripe
+
+
+
+## Images: 
 
 ### signup 
 ![signup](images/signup.png)
